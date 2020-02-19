@@ -1,0 +1,16 @@
+.header{
+    display: flex;
+    min-height: 100px;
+    background-color: #c0c0c0;
+    padding: 15px;
+}
+.header > div {
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+}
+.header > div div {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+}
