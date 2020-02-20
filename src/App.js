@@ -7,12 +7,14 @@ import history from './app/routing'
 import Authiorization from './app/pages/auth'
 import OrderDetails from './app/pages/order/orderDetails'
 import ExternalOrders from './app/pages/order/allOrders'
+import Header from './app/pages/header'
 
 function App() {
   return (
     <Provider store= {store}>
       <Router history= {history}>
         <div className="App">
+        <Header />
         <Switch>
           <Route path= '/login' exact component= {Authiorization}/>
           <Route path= '/external_orders' exact component= {ExternalOrders}/>

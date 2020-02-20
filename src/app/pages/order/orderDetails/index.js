@@ -3,6 +3,7 @@ import Preloader from '../../../components/preloader'
 import { connect } from 'react-redux'
 import { dive } from '../../../functions'
 import { actionGetOneExternal } from '../../../redux/actions'
+import OrderDrivers from './drivers'
 
 const OrderDetails = (props) => {
 
@@ -12,24 +13,25 @@ const OrderDetails = (props) => {
 
 	return props.data ?
 	 (
-			<div>
-				<div>
+			<div className='order-details-container'>
+				<div className='order-details'>
 					<h3>
 						Order #{props.data[0].id}
 					</h3>
-					<p> Received {props.data[0].createdAt} </p>
+					<span> Received {props.data[0].createdAt} </span>
 					<p> Pick-up at {props.data[0].startAdress} </p>
 					<p> Deliver to {props.data[0].finishAdress} </p>
-					<p> Miles {props.data[0].distance} </p>
-					<p> Pieces {props.data[0].quantity} </p>
-					<p> Weight {props.data[0].weight} </p>
-					<p> Dims {props.data[0].dimensions} </p>
+					<span> Miles {props.data[0].distance} </span>
+					<span> Pieces {props.data[0].quantity} </span>
+					<span> Weight {props.data[0].weight} </span>
+					<span> Dims {props.data[0].dimensions} </span>
 					<p> Suggested Track Size {props.data[0].vehicleRequirement} </p>
 					<p> If you are interested in this load? please contact us:</p>
 					<p> {props.data[0].customerName} </p>
 					<p> {props.data[0].customerAdress} </p>
 					<p> {props.data[0].customerPhone} </p>
 				</div>
+				<OrderDrivers />
 			</div>
 		) : <Preloader/>
 }

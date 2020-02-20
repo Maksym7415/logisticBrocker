@@ -1,16 +1,65 @@
-.header{
-    display: flex;
-    min-height: 100px;
-    background-color: #c0c0c0;
-    padding: 15px;
-}
-.header > div {
-    margin-left: auto;
+.controls {
     display: flex;
     flex-direction: row;
+    padding: 1rem;
 }
-.header > div div {
+.controls input {
+    margin: 0;
+}
+.controls label {
     display: flex;
-    flex-direction: column;
-    padding: 0 15px;
+    align-items: center;
+    padding-right: 2rem;
+}
+.controls select {
+    margin-right: 20%;
+}
+.controls div {
+    margin-left: auto;
+}
+.controls div > i {
+    padding-right: 1rem;
+    color: #0984ce;
+}
+.grid-container {
+    display: grid;
+    padding: 0 1rem;
+}
+.grid-container div {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    align-content: center;
+}
+.grid-container > div:first-child {
+    padding: 1rem 0;
+    border-bottom: 1px solid #686565;
+}
+.grid-container > div:nth-child(2) {
+    padding: 1rem 0;
+}
+.grid-container > div:nth-child(2) label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 0.5rem;
+    color: #686565
+}
+.grid-container > div:nth-child(2) label input {
+    border: none;
+    margin: 0 0.2rem 0 0.3rem;
+    border-bottom: 1px solid #686565;
+    width: 100%;
+    outline: none;
+}
+.grid-container .table-data:nth-child(even) {
+    background-color: #ddd8d8;
+}
+.table-data {
+    padding: 0.1rem 0;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.table-data span {
+    display: flex;
+    align-items: center;
 }

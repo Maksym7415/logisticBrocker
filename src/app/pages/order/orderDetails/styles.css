@@ -1,0 +1,94 @@
+.order-details-container {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+}
+.order-details h3 {
+    padding-bottom: 0.3rem;
+}
+.drivers-list {
+    display: grid;
+    padding: 0 1rem;
+}
+.drivers-list > div:first-child {
+    padding: 1rem 0;
+    border-bottom: 1px solid #686565;
+    margin-bottom: 0.5rem;
+}
+.drivers-list > div:nth-child(even) {
+    background-color: #ddd8d8;
+}
+.drivers-list > div {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    align-content: center;
+}
+.drivers-list >div + div span:last-child {
+    display: flex;
+    flex-direction: row;
+}
+.drivers-list > div + div span {
+    display: flex;
+    align-items: center;
+}
+.drivers-list > div + div span:last-child > button:first-child {
+    background-color: #27d83e;
+}
+.drivers-list > div + div span:last-child > button:last-child {
+    background-color: #66a7f1;
+}
+.order-configuration {
+    /* display: flex; */
+    padding: 1rem;
+    flex-direction: column;
+}
+.order-configuration > div {
+    display: flex;
+    flex-direction: row;
+}
+.order-configuration > div div {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+    width: 100%;
+}
+.order-configuration > div > div > div {
+    display: flex;
+    flex-direction: row;
+    color: #c0c0c0
+}
+.order-configuration > div > div > div input {
+    width: 90%;
+    border: none;
+    border-bottom: 1px solid #c0c0c0;
+    outline: none;
+    height: 2rem;
+}
+.order-configuration > div > div > div span {
+    padding-top: 1rem;
+}
+.order-configuration > div div > p:first-child {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.order-configuration > div div > p:last-child {
+    padding-top: 1rem;
+    color: #18c06c;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0 auto;
+}
+.order-configuration > div div:last-child textarea {
+    height: 80%;
+    width: 100%;
+    resize: none;
+    padding: 1rem;
+}
+.order-configuration div div:last-child div button:first-child {
+    background-color: #18c06c;
+    height: 2rem;;
+}
+.order-configuration div div:last-child div button:last-child {
+    background-color: #c0c0c0;
+    margin-left: auto;
+}

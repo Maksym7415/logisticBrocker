@@ -1,2 +1,28 @@
 @import url('app/components/preloader/styles.css');
 @import url('app/pages/order/allOrders/styles.css');
+@import url('app/pages/header/styles.css');
+@import url('app/pages/order/orderDetails/styles.css');
+
+body {
+    margin: 0;
+    font-size: 12px;
+    font-family: sans-serif, Arial;
+    padding: 20px 20px;
+  }
+  body * {
+    box-sizing: border-box;
+  }
+  img {
+    max-width: 100%;
+    width: auto;
+  }
+  button {
+    cursor: pointer;
+  }
+  h1, h2, h3, h4, p {
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+    color: #000000;
+  }
