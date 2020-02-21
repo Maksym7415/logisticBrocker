@@ -4,10 +4,12 @@ import { Provider }   from 'react-redux'
 import { Router, Route, Switch } from 'react-router-dom'
 import store from './app/redux'
 import history from './app/routing'
-import Authiorization from './app/pages/auth'
+import Authorization from './app/pages/auth'
 import OrderDetails from './app/pages/order/orderDetails'
 import ExternalOrders from './app/pages/order/allOrders'
 import Header from './app/pages/header'
+import Bids from './app/pages/bids'
+import PrivateRoute from './app/routing/privatRoute'
 
 function App() {
   return (
@@ -16,9 +18,10 @@ function App() {
         <div className="App">
         <Header />
         <Switch>
-          <Route path= '/login' exact component= {Authiorization}/>
+          <Route path= '/login' exact component= {Authorization}/>
           <Route path= '/' exact component= {ExternalOrders}/>
           <Route path= '/order_details/:id' exact component= {OrderDetails}/>
+          <PrivateRoute fallback={Authorization} path= '/bids' exact component= {Bids}/>
         </Switch>
         </div>
       </Router>

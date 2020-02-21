@@ -4,6 +4,7 @@
 @import url('app/pages/order/orderDetails/styles.css');
 @import url('app/components/modal/styles.css');
 @import url('app/pages/order/orderDetails/driverCall/styles.css');
+@import url('app/pages/bids/styles.css');
 
 body {
   margin: 0;

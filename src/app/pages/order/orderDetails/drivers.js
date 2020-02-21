@@ -25,19 +25,22 @@ const OrderDrivers = (props) => {
   }
 
   const handleCall = (id) => {
-    props.getOneDriver(id)
     setCall(true)
-    console.log(showCall)
+    props.getOneDriver(id)
   }
 
   useEffect(() => {
     props.getDrivers()
   },[])
+
   return (
     <div>
       <h3>Units found: {props.data && props.data.length}</h3>
+      <div style={{position: 'relative', height: '80%'}}>
+      <Modal clickOpacity={() => setCall(false)} width={'40%'} height={'40%'} show={showCall}>
+        <Call data={props.driver && props.driver[0]}/>
+      </Modal>
       <div className='drivers-list'>
-      <Call show={showCall}/>
         <div>
           <span></span>
           <span>Unit<i className="fas fa-arrow-up"></i></span>
@@ -49,21 +52,22 @@ const OrderDrivers = (props) => {
           <span>Call</span>
         </div>
         {props.data ?
-          props.data.map((item) =>
-          <div key={item.id}>
-            <span><input name={item.id} type='checkbox' checked={driverCheck[item.id] || false} onChange={changeDriverCheck} /></span>
-            <span>geopos</span>
-            <span>{item.login}</span>
-            <span>Van</span>
-            <span>Poltava 10:00AM</span>
-            <span>145x71x76in.</span>
-            <span></span>
-            <span>
-              <button onClick={() => handleCall(item.id)}>DRIVER</button>
-              <button onClick={() => handleCall(item.id)}>OWNER</button>
-            </span>
-          </div>
-        ) : <Preloader/>}
+          props.data.map((item) => (
+            <div key={item.id} >
+              <span><input name={item.id} type='checkbox' checked={driverCheck[item.id] || false} onChange={changeDriverCheck} /></span>
+              <span>geopos</span>
+              <span>{item.login}</span>
+              <span>Van</span>
+              <span>Poltava 10:00AM</span>
+              <span>145x71x76in.</span>
+              <span></span>
+              <span>
+                <button onClick={() => handleCall(item.id)}>DRIVER</button>
+                <button onClick={() => handleCall(item.id)}>OWNER</button>
+              </span>
+            </div>
+          )) : <Preloader />}
+      </div>
       </div>
       <ConfigOrder />
     </div>

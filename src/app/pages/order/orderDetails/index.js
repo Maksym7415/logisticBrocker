@@ -1,10 +1,11 @@
 import React, { useState ,useEffect } from 'react'
-import Preloader from '../../../components/preloader'
 import { connect } from 'react-redux'
+import Preloader from '../../../components/preloader'
 import { dive } from '../../../functions'
 import { actionGetOneExternal } from '../../../redux/actions'
 import OrderDrivers from './drivers'
 import Modal from '../../../components/modal'
+import history from '../../../routing'
 
 const OrderDetails = (props) => {
 
@@ -12,10 +13,9 @@ const OrderDetails = (props) => {
 		props.getOrder(props.match.params.id)
 	}, [])
 
-	return props.data ?
-	 (
-		 <Modal show={true} path={('/')} >
-			<div className='order-details-container'>
+	return props.data ? (
+		<Modal clickOpacity={() => history.push('/')} width='90%' height='90%' show={true} >
+  		<div className='order-details-container'>
 				<div className='order-details'>
 					<h3>
 						Order #{props.data[0].id}
@@ -33,10 +33,10 @@ const OrderDetails = (props) => {
 					<p> {props.data[0].customerAdress} </p>
 					<p> {props.data[0].customerPhone} </p>
 				</div>
-				<OrderDrivers order={props.match.params.id} />
-			</div>
-			</Modal>
-		) : <Preloader/>
+    	<OrderDrivers />
+  		</div>
+		</Modal> 
+  ) : <Preloader/>
 }
 
 export default connect(state => ({data: dive`${state}promise.externalOne.payload.data`}), {getOrder: actionGetOneExternal})(OrderDetails)

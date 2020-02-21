@@ -5,7 +5,8 @@ import { actionSendMail } from '../../../redux/actions'
 
 const ConfigOrder = (props) => {
   let [mail, setMail] = useState('')
-  
+  let [brPrice, setBrPrice] = useState(props.order && props.order[0])
+
   const mailParams = {
     from: 'danb41886@gmail.com',
     to: 'popovmaksim7415@gmail.com',
@@ -53,4 +54,4 @@ const ConfigOrder = (props) => {
   )
 }
 
-export default connect(state => ({data: dive`${state}promise.sendMail.payload`, manager: dive`${state}promise.profile.payload.data`}), {sendMail: actionSendMail})(ConfigOrder)
+export default connect(state => ({data: dive`${state}promise.sendMail.payload`, manager: dive`${state}promise.profile.payload.data`, order: dive`${state}promise.externalOne.payload.data`}), {sendMail: actionSendMail})(ConfigOrder)
