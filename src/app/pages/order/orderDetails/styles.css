@@ -9,6 +9,9 @@
 .drivers-list {
     display: grid;
     padding: 0 1rem;
+    height: 80%;
+    overflow: hidden;
+    position: relative;
 }
 .drivers-list > div:first-child {
     padding: 1rem 0;
@@ -23,7 +26,7 @@
     grid-template-columns: repeat(8, 1fr);
     align-content: center;
 }
-.drivers-list >div + div span:last-child {
+.drivers-list > div + div span:last-child {
     display: flex;
     flex-direction: row;
 }
@@ -38,7 +41,7 @@
     background-color: #66a7f1;
 }
 .order-configuration {
-    /* display: flex; */
+    display: flex;
     padding: 1rem;
     flex-direction: column;
 }

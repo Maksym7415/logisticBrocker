@@ -17,7 +17,7 @@ function App() {
         <Header />
         <Switch>
           <Route path= '/login' exact component= {Authiorization}/>
-          <Route path= '/external_orders' exact component= {ExternalOrders}/>
+          <Route path= '/' exact component= {ExternalOrders}/>
           <Route path= '/order_details/:id' exact component= {OrderDetails}/>
         </Switch>
         </div>

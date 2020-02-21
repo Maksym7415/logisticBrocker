@@ -1,0 +1,25 @@
+.modal-window {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+.modal-opacity {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #d1d5d0;
+    opacity: 0.8;
+}
+.modal-child {
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    opacity: 1;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}

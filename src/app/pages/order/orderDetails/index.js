@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { dive } from '../../../functions'
 import { actionGetOneExternal } from '../../../redux/actions'
 import OrderDrivers from './drivers'
+import Modal from '../../../components/modal'
 
 const OrderDetails = (props) => {
 
@@ -13,6 +14,7 @@ const OrderDetails = (props) => {
 
 	return props.data ?
 	 (
+		 <Modal show={true} path={('/')} >
 			<div className='order-details-container'>
 				<div className='order-details'>
 					<h3>
@@ -31,8 +33,9 @@ const OrderDetails = (props) => {
 					<p> {props.data[0].customerAdress} </p>
 					<p> {props.data[0].customerPhone} </p>
 				</div>
-				<OrderDrivers />
+				<OrderDrivers order={props.match.params.id} />
 			</div>
+			</Modal>
 		) : <Preloader/>
 }
 

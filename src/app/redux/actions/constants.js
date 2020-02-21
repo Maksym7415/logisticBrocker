@@ -23,7 +23,7 @@ const profile = {
 
 const getDrivers = {
 	url: 'admin/getAllUsers',
-	method: 'get'
+	method: 'put'
 }
 
 const sendMail = {
@@ -31,6 +31,7 @@ const sendMail = {
 	method: 'post'
 }
 
+ 
 /*const myFetch = () => fetch('http://localhost:4000/admin/orders', {
 	method: 'get',
 	headers: {
