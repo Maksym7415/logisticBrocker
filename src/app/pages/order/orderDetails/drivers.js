@@ -11,6 +11,7 @@ import history from '../../../routing'
 const OrderDrivers = (props) => {
   let [driverCheck, setDriverChecked] = useState({})
   let [showCall, setCall] = useState(false)
+  let [driver, setDriver] = useState()
 
   const changeDriverCheck = (e) => {
     const item = e.target.name
@@ -22,6 +23,9 @@ const OrderDrivers = (props) => {
         return {...driverCheck, [item]: isChecked}
       }
     })
+    if (isChecked === true) {
+      setDriver(props.data.filter((driver) => driver.id === item))
+    }
   }
 
   const handleCall = (id) => {
@@ -36,7 +40,7 @@ const OrderDrivers = (props) => {
   return (
     <div>
       <h3>Units found: {props.data && props.data.length}</h3>
-      <div style={{position: 'relative', height: '80%'}}>
+      <div className='drivers-list-modal-wrapper'>
       <Modal clickOpacity={() => setCall(false)} width={'40%'} height={'40%'} show={showCall}>
         <Call data={props.driver && props.driver[0]}/>
       </Modal>
@@ -69,7 +73,7 @@ const OrderDrivers = (props) => {
           )) : <Preloader />}
       </div>
       </div>
-      <ConfigOrder />
+      <ConfigOrder driver={driver} />
     </div>
   )
 }
