@@ -5,6 +5,8 @@
 @import url('app/components/modal/styles.css');
 @import url('app/pages/order/orderDetails/driverCall/styles.css');
 @import url('app/pages/bids/styles.css');
+/* @import url('../public/sdk/map.css'); */
+@import url('app/map/styles.css');
 
 body {
   margin: 0;
