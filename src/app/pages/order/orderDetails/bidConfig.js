@@ -17,10 +17,9 @@ const ConfigOrder = (props) => {
   115 miles out
   Time to pickup: 2h 1min
   Cargo VAN
-  ${driver && driver.login}
 
   We appreciate your buisness
-  ${props.manager.login}`)
+  `)
 
   const mailParams = {
     from: 'danb41886@gmail.com',
@@ -75,6 +74,7 @@ const ConfigOrder = (props) => {
     <div style={props.display} className='order-configuration'>
       <h3>Broker email <i>popovmaksim7415@gmail.com</i></h3>
       <div>
+      {console.log(props.driver)}
         <div>
           <p>Bid placement ({order.distance}mi)</p>
           <div>

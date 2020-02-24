@@ -21,17 +21,17 @@ const Table = (props) =>
       <label><i className="fas fa-search"></i><input placeholder='Filter'/></label>
       <label><i className="fas fa-search"></i><input placeholder='Filter'/></label>
     </div>
-    {props.data && props.data.map((item)=> { return (
-      <div key={item.id} className='table-data' onClick={() => history.push(`/order_details/${item.id}`)}>
-        <span>{item.createdAt}</span>
-        <span>{item.startAdress}</span>
-        <span>{item.finishAdress}</span>
-        <span>{item.vehicleRequirement}</span>
-        <span>{item.distance}</span>
+    {props.data && props.data.map((item) => { return (
+      <div key={item.id_order} className='table-data' onClick={() => history.push(`/order_details/${item.id_order}`)}>
+        <span>{item.received}</span>
+        <span>{item.pickup}</span>
+        <span>{item.deliver}</span>
+        <span>{item.air_miles}</span>
+        <span>{item.earth_miles}</span>
         <span>some info</span>
-        <span>{item.customerName}</span>
+        <span>{item.name}</span>
       </div>
-    )})} 
+    )})}
   </div>
 
   export default Table

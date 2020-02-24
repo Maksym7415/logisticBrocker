@@ -21,15 +21,15 @@ const loginReducer = (state = {}, action) => {
 }
 
 function actionPromiseLogin(login, password) {
-	const name = 'LOGIN'
-	const promise = axios({
-	method: 'put',
-	url: 'http://localhost:4000/login',
-	headers: {
-    'Content-Type': `application/json`,
-  },
-	data: JSON.stringify({login, password})
-})	
+  const name = 'LOGIN'
+  const promise = axios({
+    method: 'post',
+    url: 'http://localhost:8080/api/user/authorization',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: JSON.stringify({login, password})
+  })
   const actionPending = () => ({ type: 'PROMISE', status: 'PENDING', payload: null,name, error: null })
   const actionResolved = payload => ({ type: 'PROMISE', status: 'RESOLVED', payload,name, error: null })
   const actionRejected = error => ({ type: 'PROMISE', status: 'REJECTED', payload: null,name, error })

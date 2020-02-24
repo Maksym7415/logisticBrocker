@@ -6,7 +6,6 @@ import { actionGetDrivers, actionGetOneDriver } from '../../../redux/actions'
 import ConfigOrder from './bidConfig'
 import Call from './driverCall'
 import Modal from '../../../components/modal'
-import history from '../../../routing'
 
 const OrderDrivers = (props) => {
   let [driverCheck, setDriverChecked] = useState({})
@@ -24,7 +23,7 @@ const OrderDrivers = (props) => {
       }
     })
     if (isChecked === true) {
-      setDriver(props.data.filter((driver) => driver.id === item))
+      setDriver(props.data.filter((driver) => driver.id_driver == item))
     }
   }
 
@@ -57,17 +56,17 @@ const OrderDrivers = (props) => {
         </div>
         {props.data ?
           props.data.map((item) => (
-            <div key={item.id} >
-              <span><input name={item.id} type='checkbox' checked={driverCheck[item.id] || false} onChange={changeDriverCheck} /></span>
+            <div key={item.id_driver} >
+              <span><input name={item.id_driver} type='checkbox' checked={driverCheck[item.id_driver] || false} onChange={changeDriverCheck} /></span>
               <span>geopos</span>
-              <span>{item.login}</span>
+              <span>{item.name}</span>
               <span>Van</span>
               <span>Poltava 10:00AM</span>
               <span>145x71x76in.</span>
               <span></span>
               <span>
-                <button onClick={() => handleCall(item.id)}>DRIVER</button>
-                <button onClick={() => handleCall(item.id)}>OWNER</button>
+                <button onClick={() => handleCall(item.id_driver)}>DRIVER</button>
+                <button onClick={() => handleCall(item.id_driver)}>OWNER</button>
               </span>
             </div>
           )) : <Preloader />}
