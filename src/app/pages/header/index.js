@@ -19,7 +19,7 @@ const Header = (props) => {
           DISPATCH
         </button>
         <button onClick={() => history.push('/bids')}><i className="fas fa-dollar-sign"></i> BIDS </button>
-        <button><i className="fas fa-truck"></i> VEHICLES </button>
+        <button onClick={() => history.push('/vehicles')}><i className="fas fa-truck" ></i> VEHICLES </button>
         <button><i className="fas fa-cog"></i> SETTINGS </button>
       </div>
       <div>

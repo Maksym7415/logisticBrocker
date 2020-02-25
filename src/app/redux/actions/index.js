@@ -11,6 +11,6 @@ const actionGetDrivers = () => actionPromise('drivers', myAxios(getDrivers))
 
 const actionGetProfile = (data) => actionPromise('profile', myAxios(profile,{order: data}))
 const actionSendMail = (data) => actionPromise('sendMail', myAxios(sendMail, data))
-const actionGetOneDriver = (data) => actionPromise('oneDriver', myAxios(driverOne, {id_driver: data}))
+const actionGetOneDriver = (data) => actionPromise('oneDriver', myAxios(driverOne, {id: data}))
 
 export { actionLogin, actionLogout, actionOnLogin, actionGetAllExternal, actionGetOneExternal, actionGetProfile, actionGetDrivers, actionSendMail, actionGetOneDriver }

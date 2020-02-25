@@ -8,32 +8,40 @@ import Modal from '../../../components/modal'
 import history from '../../../routing'
 
 const OrderDetails = (props) => {
-
+	let [coord] = useState({
+		longitude: 36.2522401,
+		latitude: 49.9803506
+	})
 	useEffect(() => {
 		props.getOrder(props.match.params.id)
 	}, [])
 
 	return props.data ? (
 		<Modal clickOpacity={() => history.push('/')} width='90%' height='90%' show={true} >
-  		<div className='order-details-container'>
+			<div className='order-details-container'>
 				<div className='order-details'>
 					<h3>
-						Order #{props.data[0].orders[0].id_order}
+						Order #{props.data.id_order}
 					</h3>
-					<span> Received {props.data[0].orders[0].received} </span>
-					<p> Pick-up at {props.data[0].orders[0].pickup} </p>
-					<p> Deliver to {props.data[0].orders[0].deliver} </p>
-					<span> Miles {props.data[0].orders[0].earth_miles} </span>
-					<span> Pieces  </span>
-					<span> Weight {props.data[0].orders[0].weight} </span>
-					<span> Dims {`${props.data[0].orders[0].width}x${props.data[0].orders[0].length}x${props.data[0].orders[0].height}`} </span>
-					<p> Suggested Track Size </p>
-					<p> If you are interested in this load? please contact us:</p>
-					<p> {props.data[0].name} </p>
-					<p> {props.data[0].fax} </p>
-					<p> {props.data[0].email} </p>
+					<p style={{color: '#0000ff', cursor: 'pointer'}} onClick={() => history.push(`/map/${JSON.stringify(coord)}`)} >View on map</p>
+					<div>
+						<span> <b>Received</b> {props.data.received} </span>
+						<p> <b>Pick-up at</b> {props.data.pickup} </p>
+						<p> <b>Deliver to</b> {props.data.deliver} </p>
+						<p> <b>Miles</b> {props.data.earth_miles} </p>
+						<p> <b>Pieces</b>  </p>
+						<p> <b>Weight</b> {props.data.weight} </p>
+						<p> <b>Dims</b> {`${props.data.width}x${props.data.length}x${props.data.height}`} </p>
+						<p> <b>Suggested Track Size</b> </p>
+						<div>
+							<p> <b>If you are interested in this load - please contact us:</b></p>
+							<p> {props.data.broker.name} </p>
+							<p> {props.data.broker.phone} </p>
+							<p> {props.data.broker.email} </p>
+						</div>
+					</div>
 				</div>
-    	<OrderDrivers />
+		 	<OrderDrivers order={props.data} />
   		</div>
 		</Modal> 
   ) : <Preloader/>

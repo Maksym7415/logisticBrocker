@@ -6,15 +6,19 @@ import { actionGetDrivers, actionGetOneDriver } from '../../../redux/actions'
 import ConfigOrder from './bidConfig'
 import Call from './driverCall'
 import Modal from '../../../components/modal'
+import Map from '../../../map'
+import getDistance from 'geolib/es/getDistance'
 
 const OrderDrivers = (props) => {
   let [driverCheck, setDriverChecked] = useState({})
   let [showCall, setCall] = useState(false)
-  let [driver, setDriver] = useState()
+  let [driver, setDriver] = useState('')
+  let [checkboxStatus, setCheckboxStatus] = useState(false)
 
   const changeDriverCheck = (e) => {
     const item = e.target.name
     const isChecked = e.target.checked
+    setCheckboxStatus(isChecked)
     setDriverChecked(() => {
       if (isChecked === true) {
         return {[item]: isChecked}
@@ -40,8 +44,8 @@ const OrderDrivers = (props) => {
     <div>
       <h3>Units found: {props.data && props.data.length}</h3>
       <div className='drivers-list-modal-wrapper'>
-      <Modal clickOpacity={() => setCall(false)} width={'40%'} height={'40%'} show={showCall}>
-        <Call data={props.driver && props.driver[0]}/>
+      <Modal clickOpacity={() => setCall(false)} width={'40%'} height={'60%'} show={showCall}>
+        <Call data={props.driver}/>
       </Modal>
       <div className='drivers-list'>
         <div>
@@ -54,11 +58,11 @@ const OrderDrivers = (props) => {
           <span>Bid</span>
           <span>Call</span>
         </div>
-        {props.data ?
-          props.data.map((item) => (
+        {props.data && props.order ?
+          props.data.sort((a, b) => getDistance({latitude: +a.latitude, longitude: +a.longitude}, {latitude: +props.order.deliver_latitude, longitude: +props.order.deliver_longitude}) - getDistance({latitude: +b.latitude, longitude: +b.longitude}, {latitude: +props.order.deliver_latitude, longitude: +props.order.deliver_longitude})).map((item) => (
             <div key={item.id_driver} >
               <span><input name={item.id_driver} type='checkbox' checked={driverCheck[item.id_driver] || false} onChange={changeDriverCheck} /></span>
-              <span>geopos</span>
+              <span>{Math.floor(getDistance({latitude: +item.longitude, longitude: +item.latitude}, {latitude: +props.order.deliver_latitude, longitude: +props.order.deliver_longitude})/1000)}</span>
               <span>{item.name}</span>
               <span>Van</span>
               <span>Poltava 10:00AM</span>
@@ -72,7 +76,7 @@ const OrderDrivers = (props) => {
           )) : <Preloader />}
       </div>
       </div>
-      <ConfigOrder driver={driver} />
+      <ConfigOrder status={checkboxStatus} driver={driver} />
     </div>
   )
 }

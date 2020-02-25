@@ -1,0 +1,81 @@
+.vehicles-container {
+    padding: 2rem
+}
+.vehicles-header-links {
+    display: flex;
+    flex-direction: column;
+}
+.vehicles-header-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 1px solid #c0c0c0;
+    margin-bottom: 20px;
+}
+.vehicles-header-links button {
+    border: none;
+    margin-right: 10px;
+    padding: 5px;
+    outline: none;
+    background-color: #ffffff;
+    width: 10%;
+    font-size: 1.5rem;
+    color: #c0c0c0
+}
+.vehicles-header-links + div {
+    margin-left: auto;
+    width: 10%;
+    font-size: 1.2rem;
+    color: #5555ff;
+    padding-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.vehicles-header-links + div i {
+    margin-right: 20px;
+}
+.border-bottom {
+    border-bottom: 1px solid #5555ff;
+}
+.vehicles-grid-container {
+    display: grid;
+    padding: 0 1rem;
+    overflow-y: scroll;
+    height: 100%;
+    align-content: flex-start;
+    width: 100%
+}
+.vehicles-grid-container::-webkit-scrollbar { 
+    width: 0; 
+}
+.vehicles-grid-container div {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    align-content: center;
+
+}
+.vehicles-grid-container > div:first-child {
+    font-size: 1rem;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #c0c0c0;
+}
+.vehicles-grid-container > div:first-child span:last-child {
+    margin-left: auto;
+    padding-right: 20px;
+}
+.vehicles-grid-container > div:nth-child(2) input {
+    border: none;
+    border-bottom: 1px solid #c0c0c0;
+    margin: 0 10px;
+    height: 40px;
+    font-size: 1rem;
+}
+.vehicles-grid-container > div:nth-child(2) select {
+    border: none;
+    border-bottom: 1px solid #c0c0c0;
+    margin: 0 10px;
+    height: 40px;
+    font-size: 1rem;
+    font-weight: bold;
+}

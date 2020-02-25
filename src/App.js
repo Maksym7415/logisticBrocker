@@ -11,6 +11,7 @@ import Header from './app/pages/header'
 import Bids from './app/pages/bids'
 import PrivateRoute from './app/routing/privatRoute'
 import Map from './app/map'
+import Vehicles from './app/pages/vehicles'
 
 function App() {
   return (
@@ -20,15 +21,15 @@ function App() {
         <Header />
         <Switch>
           <Route path= '/login' exact component={Authorization} />
-          <Route path= '/map' exact component={Map} />
+          <Route path= '/map/:coord' exact component={Map} />
           <Route path= '/' exact component={ExternalOrders} />
           <Route path= '/order_details/:id' exact component={OrderDetails} />
+          <Route path= '/vehicles' exact component={Vehicles} />
           <PrivateRoute fallback={Authorization} path= '/bids' exact component={Bids} />
         </Switch>
         </div>
       </Router>
     </Provider>
-  
   )
 }
 

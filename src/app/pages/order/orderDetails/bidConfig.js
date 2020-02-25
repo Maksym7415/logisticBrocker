@@ -6,17 +6,18 @@ import { actionSendMail } from '../../../redux/actions'
 
 const ConfigOrder = (props) => {
   let [driver, setDriver] = useState()
-  let [order] = useState(props.order && props.order[0])
+  let [order] = useState(props.order)
   let [bidPrice, setBidPrice] = useState(order.price)
-  let [bidPriceKm, setBidPriceKm] = useState(bidPrice/order.distance)
+  let [bidPriceKm, setBidPriceKm] = useState(bidPrice/order.earth_miles)
   let [driverPrice, setDriverPrice] = useState('')
   let [mail, setMail] = useState('')
   let [driverPriceKm, setDriverPriceKm] = useState('')
+
   let str = (`
   ${bidPrice} all in
   115 miles out
   Time to pickup: 2h 1min
-  Cargo VAN
+  ${driver && driver.vehicle && driver.vehicle.model}
 
   We appreciate your buisness
   `)
@@ -44,11 +45,11 @@ const ConfigOrder = (props) => {
   const handleSendMail = () => props.sendMail(mailParams)
   const changeDriverPrice = (e) => {
     setDriverPrice(e.target.value)
-    setDriverPriceKm(e.target.value/order.distance)
+    setDriverPriceKm(e.target.value/order.earth_miles)
   }
   const changeBidPrice = (e) => {
     setBidPrice(e.target.value)
-    setBidPriceKm(e.target.value/order.distance)
+    setBidPriceKm(e.target.value/order.earth_miles)
   }
   const percentValue = () => {
     if (isNaN(Math.floor((bidPrice - driverPrice)/driverPrice * 100))) {
@@ -63,20 +64,21 @@ const ConfigOrder = (props) => {
   }
    
   useEffect(() => {
-    if (props.driver && props.driver[0] && props.driver[0].priceKm) {
-      setDriverPriceKm(props.driver[0].priceKm)
-      setDriverPrice(props.driver[0].priceKm * order.distance)
+    if (props.driver && props.driver[0] && props.driver[0].price) {
+      setDriverPriceKm(props.driver[0].price)
+      setDriverPrice(props.driver[0].price * order.earth_miles)
       setDriver(props.driver[0])
     }
+    
   }, [props.driver])
 
   return (
     <div style={props.display} className='order-configuration'>
-      <h3>Broker email <i>popovmaksim7415@gmail.com</i></h3>
+      <h3>Broker email <i> {order.broker.email} </i></h3>
       <div>
-      {console.log(props.driver)}
+      {console.log(props.status)}
         <div>
-          <p>Bid placement ({order.distance}mi)</p>
+          <p>Bid placement ({order.earth_miles}mi)</p>
           <div>
             <div>
               <span>Price for Brocker</span>
@@ -86,15 +88,15 @@ const ConfigOrder = (props) => {
             </div>
             <div>
               <span>Price for Driver</span>
-              <input value={driverPrice} onChange={changeDriverPrice} />
+              <input value={props.status !== false ? driverPrice : ''} onChange={changeDriverPrice} />
               <span>Price per mile</span>
-              <input value={priceKmValue(driverPriceKm)} onChange={() => {}} />
+              <input value={priceKmValue(props.status !== false ? driverPriceKm : '')} onChange={() => {}} />
             </div>
           </div>
           <p>{percentValue()}</p>
         </div>
         <div>
-          <textarea type='textarea' value={props.driver ? str : ''} onChange={changeMail} />
+          <textarea type='textarea' value={props.driver && props.status !== false ? str : ''} onChange={changeMail} />
           <div>
             <button onClick={handleSendMail}>PLACE BID</button>
             <button>CLOSE</button>

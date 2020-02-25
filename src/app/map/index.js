@@ -1,6 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import Modal from '../components/modal'
+import history from '../routing'
 
 const Map = (props) => {
+  let [coordinates] = useState(() => {
+    let obj = JSON.parse(props.match.params.coord)
+    return [obj.latitude, obj.longitude]
+  })
+
+console.log(coordinates)
 
   useEffect(() => {
     const script = document.createElement('script')
@@ -11,22 +19,22 @@ const Map = (props) => {
       let map = window.tomtom.L.map('map', {
         source: 'vector',
         key: 'T8tULZWO4BffQ98SLWIdIkAUWOECm6DO',
-        center: [49.9803506, 36.2522401],
+        center: coordinates,
         basePath: '/sdk',
-        style: 'night',
+        style: 'main',
         zoom: 15
       })
-      console.log(map)
-      let marker = window.tomtom.L.marker([49.9803506, 36.2522401], {
+      let marker = window.tomtom.L.marker(coordinates, {
         draggable: true
       })
       marker.addTo(map)
-      console.log(window.tomtom.L.Handler)
     }
-  })
+  }, [])
 
   return (
-    <div id='map'> </div>
+    <Modal clickOpacity={() => history.goBack()} width='90%' height='90%' show={true} >
+      <div id='map'> </div>
+    </Modal>
   )
 }
 

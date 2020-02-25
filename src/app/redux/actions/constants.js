@@ -48,7 +48,7 @@ const stackStatus = {
 
 const driverOne = {
 	url: 'api/driver/getDriver',
-	maethod: 'post'
+	method: 'post'
 }
 
 const profile = {

@@ -29,7 +29,7 @@ const Table = (props) =>
         <span>{item.air_miles}</span>
         <span>{item.earth_miles}</span>
         <span>some info</span>
-        <span>{item.name}</span>
+        <span>{item.broker && item.broker.name}</span>
       </div>
     )})}
   </div>
