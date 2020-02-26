@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { dive } from '../../../functions'
 import { actionSendMail, actionPlaceBid } from '../../../redux/actions'
+import history from '../../../routing'
+import { actionDeletePromise } from '../../../redux/reducers/promiseReducer'
 
 const ConfigOrder = (props) => {
   let [driver, setDriver] = useState()
@@ -54,10 +56,10 @@ const ConfigOrder = (props) => {
 
   const percentValue = () => {
     if (isNaN(Math.floor((bidPrice - driverPrice) / driverPrice * 100))) {
-      return '-- %'
+      return '-- '
     }
     if (Math.floor((bidPrice - driverPrice)/driverPrice * 100) === Infinity) {
-      return '-- %'
+      return '-- '
     }
     return Math.floor((bidPrice - driverPrice) / driverPrice * 100)
   }
@@ -81,6 +83,13 @@ const ConfigOrder = (props) => {
       setDriver(props.driver[0])
     }
   }, [props.driver])
+
+  useEffect(() => {
+    if (props.bid === 'OK') {
+      props.deleteBid('placeBid')
+      history.push('/')
+    }
+  }, [props.bid])
 
   return (
     <div style={props.display} className='order-configuration'>
@@ -109,10 +118,10 @@ const ConfigOrder = (props) => {
               <input value={priceKmValue(props.status !== false ? driverPriceKm : '')} onChange={() => {}} />
             </div>
           </div>
-          <p>{percentValue()} %</p>
+          <p>{props.status !== false ? percentValue() + '%' : '-- %'}</p>
         </div>
         <div>
-          <textarea type='textarea' value={props.driver && props.status !== false ? str : ''} onChange={changeMail} />
+          <textarea type='textarea' value={props.driver && props.status === false || props.bid === 'OK' ? '' : str} onChange={changeMail} />
           <div>
             <button onClick={handlePlaceBid}>PLACE BID</button>
             <button>CLOSE</button>
@@ -123,4 +132,4 @@ const ConfigOrder = (props) => {
   )
 }
 
-export default connect(state => ({data: dive`${state}promise.sendMail.payload`, manager: dive`${state}promise.profile.payload.data`, order: dive`${state}promise.externalOne.payload.data`}), {sendMail: actionSendMail, placeBid: actionPlaceBid})(ConfigOrder)
+export default connect(state => ({data: dive`${state}promise.sendMail.payload`, manager: dive`${state}promise.profile.payload.data`, order: dive`${state}promise.externalOne.payload.data`, bid: dive`${state}promise.placeBid.payload.data`}), {sendMail: actionSendMail, placeBid: actionPlaceBid, deleteBid: actionDeletePromise})(ConfigOrder)

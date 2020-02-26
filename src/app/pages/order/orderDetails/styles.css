@@ -3,11 +3,11 @@
     flex-direction: row;
     padding: 1rem;
     height: 100%;
-    overflow-y: scroll;
     justify-content: space-between;
+    overflow-y: scroll;
 }
-.order-details-container::-webkit-scrollbar {
-    width: 0;
+.order-details-container::-webkit-scrollbar { 
+    width: 0; 
 }
 .order-details-container h3 {
     padding-bottom: 1rem;
@@ -36,24 +36,24 @@
     position: relative;
     max-height: 60%;
 }
+.drivers-list > div:nth-child(even) {
+    background-color: #ddd8d8;
+}
 .drivers-list {
     display: grid;
     padding: 0 1rem;
-    overflow-y: scroll;
-    height: 100%;
+    height: 40vh;
     align-content: flex-start;
+    overflow-y: scroll;
 }
-.drivers-list::-webkit-scrollbar { 
-    width: 0; 
+.drivers-list::-webkit-scrollbar {
+    width: 0;
 }
 .drivers-list > div:first-child {
     padding: 1rem 0;
     border-bottom: 1px solid #686565;
     margin-bottom: 0.5rem;
     max-height: 10%
-}
-.drivers-list > div:nth-child(even) {
-    background-color: #ddd8d8;
 }
 .drivers-list > div {
     display: grid;
@@ -82,6 +82,9 @@
     padding: 1rem;
     flex-direction: column;
     height: 40%;
+}
+.order-configuration h3 + div {
+    padding-bottom: 10px
 }
 .order-configuration > div {
     display: flex;

@@ -28,6 +28,7 @@ const Header = (props) => {
           <span>{props.data && props.data.user && props.data.user.role}</span>
         </div>
         <img alt='avatar' src='../../../../../logo192.png' />
+        {props.data ? <button></button> : <button></button>}
       </div>
     </div>
   )

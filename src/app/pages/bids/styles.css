@@ -1,13 +1,16 @@
 .bids-container {
     display: grid;
     padding: 2.5rem;
-    overflow: hidden;
+    overflow-x: scroll;
     height: 100%;
     align-content: flex-start;
 }
 .bids-container div {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
+}
+.bids-container::-webkit-scrollbar { 
+    width: 0; 
 }
 .bids-header {
     align-content: center;

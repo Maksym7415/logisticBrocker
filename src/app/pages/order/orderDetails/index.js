@@ -8,22 +8,25 @@ import Modal from '../../../components/modal'
 import history from '../../../routing'
 
 const OrderDetails = (props) => {
-	let [coord] = useState({
-		longitude: 36.2522401,
-		latitude: 49.9803506
-	})
+	let [coord, setCoord] = useState({})
 	useEffect(() => {
 		props.getOrder(props.match.params.id)
 	}, [])
+
+	useEffect(() => {
+		if (props.data) {
+			setCoord({longitude: props.data.pickup_longitude, latitude: props.data.pickup_latitude})
+		}
+	}, [props.data])
 
 	return props.data ? (
 		<Modal clickOpacity={() => history.push('/')} width='90%' height='90%' show={true} >
 			<div className='order-details-container'>
 				<div className='order-details'>
 					<h3>
-						Order #{props.data.id_order}
+						Order #{props.data.id}
 					</h3>
-					<p style={{color: '#0000ff', cursor: 'pointer'}} onClick={() => history.push(`/map/${JSON.stringify(coord)}`)} >View on map</p>
+					<p style={{color: '#0000ff', cursor: 'pointer'}} onClick={() => coord.longitude && coord.latitude && history.push(`/map/${JSON.stringify(coord)}`)} >View on map</p>
 					<div>
 					{console.log(history)}
 						<span> <b>Received</b> {props.data.received} </span>

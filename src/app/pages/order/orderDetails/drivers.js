@@ -37,7 +37,7 @@ const OrderDrivers = (props) => {
 
   useEffect(() => {
     props.getDrivers()
-  },[])
+  }, [])
 
   return (
     <div>
@@ -62,14 +62,14 @@ const OrderDrivers = (props) => {
             <div key={item.id} >
               <span>
               {console.log(item.id)}
-                <input 
+                <input
                   name={item.id}
                   type='checkbox'
-                  checked={props.orderStatus && props.orderStatus.id == item.id ? true : driverCheck[item.id]}
+                  checked={driverCheck[item.id] || false}
                   onChange={changeDriverCheck}
                   />
               </span>
-              <span>{Math.floor(getDistance({latitude: +item.longitude, longitude: +item.latitude}, {latitude: +props.order.deliver_latitude, longitude: +props.order.deliver_longitude})/1000)}</span>
+              <span>{Math.floor(getDistance({latitude: +item.longitude, longitude: +item.latitude}, {latitude: +props.order.deliver_latitude, longitude: +props.order.deliver_longitude})/1600)}</span>
               <span>{item.name}</span>
               <span>Van</span>
               <span>Poltava 10:00AM</span>

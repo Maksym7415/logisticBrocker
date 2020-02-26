@@ -3,10 +3,10 @@ import Preloader from '../../../../components/preloader'
 import history from '../../../../routing'
 
 const Call = (props) => {
-  let [coord, setCoord] = useState('')
+  let [coord, setCoord] = useState({})
 
   const handleMap = () => {
-    if (coord) {
+    if (coord.longitude && coord.latitude) {
       history.push(`/map/${JSON.stringify(coord)}`)
     }
   }
