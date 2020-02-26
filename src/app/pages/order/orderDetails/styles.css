@@ -120,6 +120,7 @@
     margin: 0 auto;
 }
 .order-configuration > div div:last-child textarea {
+    font-family: Arial, Helvetica, sans-serif;
     height: 80%;
     width: 100%;
     resize: none;

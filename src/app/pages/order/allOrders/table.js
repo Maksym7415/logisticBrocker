@@ -22,7 +22,7 @@ const Table = (props) =>
       <label><i className="fas fa-search"></i><input placeholder='Filter'/></label>
     </div>
     {props.data && props.data.map((item) => { return (
-      <div key={item.id_order} className='table-data' onClick={() => history.push(`/order_details/${item.id_order}`)}>
+      <div key={item.id} className='table-data' onClick={() => history.push(`/order_details/${item.id}`)}>
         <span>{item.received}</span>
         <span>{item.pickup}</span>
         <span>{item.deliver}</span>

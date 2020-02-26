@@ -6,7 +6,6 @@ import { actionGetDrivers, actionGetOneDriver } from '../../../redux/actions'
 import ConfigOrder from './bidConfig'
 import Call from './driverCall'
 import Modal from '../../../components/modal'
-import Map from '../../../map'
 import getDistance from 'geolib/es/getDistance'
 
 const OrderDrivers = (props) => {
@@ -27,7 +26,7 @@ const OrderDrivers = (props) => {
       }
     })
     if (isChecked === true) {
-      setDriver(props.data.filter((driver) => driver.id_driver == item))
+      setDriver(props.data.filter((drive) => drive.id == item))
     }
   }
 
@@ -60,8 +59,16 @@ const OrderDrivers = (props) => {
         </div>
         {props.data && props.order ?
           props.data.sort((a, b) => getDistance({latitude: +a.latitude, longitude: +a.longitude}, {latitude: +props.order.deliver_latitude, longitude: +props.order.deliver_longitude}) - getDistance({latitude: +b.latitude, longitude: +b.longitude}, {latitude: +props.order.deliver_latitude, longitude: +props.order.deliver_longitude})).map((item) => (
-            <div key={item.id_driver} >
-              <span><input name={item.id_driver} type='checkbox' checked={driverCheck[item.id_driver] || false} onChange={changeDriverCheck} /></span>
+            <div key={item.id} >
+              <span>
+              {console.log(item.id)}
+                <input 
+                  name={item.id}
+                  type='checkbox'
+                  checked={props.orderStatus && props.orderStatus.id == item.id ? true : driverCheck[item.id]}
+                  onChange={changeDriverCheck}
+                  />
+              </span>
               <span>{Math.floor(getDistance({latitude: +item.longitude, longitude: +item.latitude}, {latitude: +props.order.deliver_latitude, longitude: +props.order.deliver_longitude})/1000)}</span>
               <span>{item.name}</span>
               <span>Van</span>
@@ -69,8 +76,8 @@ const OrderDrivers = (props) => {
               <span>145x71x76in.</span>
               <span></span>
               <span>
-                <button onClick={() => handleCall(item.id_driver)}>DRIVER</button>
-                <button onClick={() => handleCall(item.id_driver)}>OWNER</button>
+                <button onClick={() => handleCall(item.id)}>DRIVER</button>
+                <button onClick={() => handleCall(item.id)}>OWNER</button>
               </span>
             </div>
           )) : <Preloader />}

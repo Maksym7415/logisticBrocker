@@ -5,9 +5,28 @@
     height: 100%;
     align-content: flex-start;
 }
-.bids-header {
+.bids-container div {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
+}
+.bids-header {
     align-content: center;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+.bids-item {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+}
+.denied {
+    background-color: #f2120d;
+}
+.pending {
+    background-color: #e1e1e1;
+}
+.accepted {
+    background-color: #00ae00;
 }

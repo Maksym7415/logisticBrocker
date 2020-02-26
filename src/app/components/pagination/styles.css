@@ -1,0 +1,21 @@
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+  }
+  .main > div {
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    overflow: auto;
+  }
+  .map {
+    width: 100%;
+    height: 50px;
+    border: 1px solid black;
+    margin-bottom: 2px
+  }

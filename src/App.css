@@ -7,6 +7,7 @@
 @import url('app/pages/bids/styles.css');
 @import url('app/map/styles.css');
 @import url('app/pages/vehicles/styles.css');
+@import url('app/components/pagination/styles.css');
 
 body {
   margin: 0;

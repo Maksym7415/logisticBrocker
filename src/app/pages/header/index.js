@@ -24,8 +24,8 @@ const Header = (props) => {
       </div>
       <div>
         <div>
-          <span>{props.data && props.data.login}</span>
-          <span>{props.data && props.data.acl}</span>
+          <span>{props.data && props.data.name}</span>
+          <span>{props.data && props.data.user && props.data.user.role}</span>
         </div>
         <img alt='avatar' src='../../../../../logo192.png' />
       </div>
@@ -33,4 +33,4 @@ const Header = (props) => {
   )
 } 
 
-export default connect(state => ({data: dive`${state}promise.profile.payload.data`, token: dive`${state}token.data.sub.id`}), {getProfile: actionGetProfile})(Header)
+export default connect(state => ({data: dive`${state}promise.profile.payload.data`, token: dive`${state}token.data.sub.id_user`}), {getProfile: actionGetProfile})(Header)

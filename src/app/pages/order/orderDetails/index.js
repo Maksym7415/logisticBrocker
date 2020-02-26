@@ -25,6 +25,7 @@ const OrderDetails = (props) => {
 					</h3>
 					<p style={{color: '#0000ff', cursor: 'pointer'}} onClick={() => history.push(`/map/${JSON.stringify(coord)}`)} >View on map</p>
 					<div>
+					{console.log(history)}
 						<span> <b>Received</b> {props.data.received} </span>
 						<p> <b>Pick-up at</b> {props.data.pickup} </p>
 						<p> <b>Deliver to</b> {props.data.deliver} </p>
@@ -41,7 +42,7 @@ const OrderDetails = (props) => {
 						</div>
 					</div>
 				</div>
-		 	<OrderDrivers order={props.data} />
+		 	<OrderDrivers order={props.data} orderStatus={dive`${history}location.state.status`} />
   		</div>
 		</Modal> 
   ) : <Preloader/>

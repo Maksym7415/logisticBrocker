@@ -26,11 +26,6 @@ const getDrivers = {
 	method: 'get'
 }
 
-const placeBid = {
-	url: '',
-	method: 'post'
-}
-
 const sendMail = {
 	url: 'admin/sendMail',
 	method: 'post'
@@ -47,13 +42,23 @@ const stackStatus = {
 }
 
 const driverOne = {
-	url: 'api/driver/getDriver',
+	url: 'api/manager/getDriver',
 	method: 'post'
 }
 
 const profile = {
-	url: 'user/profile',
-	method: 'put'
+	url: 'api/manager/getProfile',
+	method: 'post'
+}
+
+const placeBid = {
+	url: 'api/manager/placeBid',
+	method: 'post'
+}
+
+const getStakes = {
+	url: 'api/manager/getStakes',
+	method: 'get'
 }
 /*const myFetch = () => fetch('http://localhost:4000/admin/orders', {
 	method: 'get',
@@ -63,4 +68,4 @@ const profile = {
 		}
 }).then(res => res.json).then(res => console.log(res)).catch(e => console.log(e))
 */
-export { myAxios, allOrders, orderOne, getDrivers, placeBid, sendMail, changeStackStatus, stackStatus, driverOne, profile }
+export { myAxios, allOrders, orderOne, getDrivers, sendMail, changeStackStatus, stackStatus, driverOne, profile, placeBid, getStakes }

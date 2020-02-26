@@ -12,13 +12,22 @@
     border-bottom: 1px solid #c0c0c0;
     margin-bottom: 20px;
 }
-.vehicles-header-links button {
+.border-none {
     border: none;
     margin-right: 10px;
     padding: 5px;
     outline: none;
     background-color: #ffffff;
-    width: 10%;
+    font-size: 1.5rem;
+    color: #c0c0c0
+}
+.border {
+    border: none;
+    border-bottom: 1px solid #5555ff;
+    margin-right: 10px;
+    padding: 5px;
+    outline: none;
+    background-color: #ffffff;
     font-size: 1.5rem;
     color: #c0c0c0
 }
@@ -52,7 +61,7 @@
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     align-content: center;
-
+    padding: 0 10px;
 }
 .vehicles-grid-container > div:first-child {
     font-size: 1rem;
@@ -67,9 +76,13 @@
 .vehicles-grid-container > div:nth-child(2) input {
     border: none;
     border-bottom: 1px solid #c0c0c0;
-    margin: 0 10px;
     height: 40px;
     font-size: 1rem;
+    outline: none;
+    width: 80%
+}
+.vehicles-grid-container > div:nth-child(2) {
+    margin-bottom: 15px;;
 }
 .vehicles-grid-container > div:nth-child(2) select {
     border: none;
@@ -77,5 +90,38 @@
     margin: 0 10px;
     height: 40px;
     font-size: 1rem;
-    font-weight: bold;
+    /* font-weight: bold; */
+    outline: none;
+}
+.vehicles-grid-container > div:nth-child(2) select option {
+    font-size: 0.8rem;
+    margin: 10px 0;
+}
+.drivers-item span {
+    padding: 10px 0;
+    font-size: 0.8rem;
+}
+.drivers-item span:last-child {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+}
+.drivers-item span:last-child i {
+    margin-right: 10px;
+    cursor: pointer;
+}
+.drivers-item:nth-child(odd) {
+    background-color: #ddd8d8;
+}
+.red {
+    background-color: #ff3e3e;
+}
+.yellow {
+    background-color: yellow;
+}
+.green {
+    background-color: #00b359;
+}
+.blue {
+    background-color: #5ecdf2;
 }

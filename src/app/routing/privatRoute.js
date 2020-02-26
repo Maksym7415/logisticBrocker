@@ -20,4 +20,4 @@ const PrivateRoute = (props) => (
   } />
 )
 
-export default connect((state) => ({data: dive`${state}promise.profile.payload.data.acl`}))(PrivateRoute)
+export default connect((state) => ({data: dive`${state}promise.profile.payload.data.user.role`}))(PrivateRoute)
