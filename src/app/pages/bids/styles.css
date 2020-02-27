@@ -5,7 +5,7 @@
     height: 100%;
     align-content: flex-start;
 }
-.bids-container div {
+.bids-header {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
 }
@@ -23,6 +23,7 @@
     align-items: center;
     font-size: 0.8rem;
     margin-bottom: 2px;
+    cursor: pointer;
 }
 .denied {
     background-color: #f2120d;
@@ -32,4 +33,17 @@
 }
 .accepted {
     background-color: #00ae00;
+}
+#scrollableDiv {
+    display: grid;
+    overflow: auto;
+    height: 100%;
+    align-content: flex-start;
+}
+.bids-item {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+}
+#scrollableDiv::-webkit-scrollbar {
+    width: 0;
 }

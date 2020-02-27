@@ -8,6 +8,8 @@
 @import url('app/map/styles.css');
 @import url('app/pages/vehicles/styles.css');
 @import url('app/components/pagination/styles.css');
+@import url('app/pages/auth/styles.css');
+@import url('app/components/access/styles.css');
 
 body {
   margin: 0;

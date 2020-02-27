@@ -9,10 +9,13 @@ import OrderDetails from './app/pages/order/orderDetails'
 import ExternalOrders from './app/pages/order/allOrders'
 import Header from './app/pages/header'
 import Bids from './app/pages/bids'
-import PrivateRoute from './app/routing/privatRoute'
+import ManagerRoute from './app/routing/managerRoute'
 import Map from './app/map'
 import Vehicles from './app/pages/vehicles'
 import Pagination from './app/components/pagination'
+import AdminRoute from './app/routing/adminRouter'
+import Access from './app/components/access'
+import NotFound from './app/components/notfound'
 
 function App() {
   return (
@@ -21,13 +24,15 @@ function App() {
         <div className='App'>
           <Header />
           <Switch>
+            <Route path= '/denied' exact component={Access} />
             <Route path= '/login' exact component={Authorization} />
-            <Route path= '/map/:coord' exact component={Map} />
-            <Route path= '/' exact component={ExternalOrders} />
-            <Route path= '/order_details/:id' exact component={OrderDetails} />
-            <Route path= '/vehicles' exact component={Vehicles} />
-            <Route path= '/pagination' exact component={Pagination} />
-            <PrivateRoute fallback={Authorization} path='/bids' exact component={Bids} />
+            <ManagerRoute fallback='/login' path= '/map/:coord' exact component={Map} />
+            <ManagerRoute fallback='/login' path='/' exact component={ExternalOrders} />
+            <ManagerRoute fallback='/login' path='/order_details/:id' exact component={OrderDetails} />
+            <ManagerRoute fallback='/login' path='/vehicles' exact component={Vehicles} />
+            <Route fallback='/denied' path= '/pagination' exact component={Pagination} />
+            <ManagerRoute fallback='/login' path='/bids' exact component={Bids} />
+            <Route path='*' component={NotFound}/>
           </Switch>
         </div>
       </Router>
@@ -35,4 +40,4 @@ function App() {
   )
 }
 
-export default App;
+export default App

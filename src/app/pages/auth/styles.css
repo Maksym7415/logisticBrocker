@@ -1,0 +1,31 @@
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+.login-form input {
+    margin-bottom: 10px;
+    height: 10%;
+    width: 60%;
+    border-radius: 5px;
+    outline: none;
+    max-width: 250px;
+    padding: 0 5px;
+}
+.red-login {
+    border-color: red;
+    color: red
+}
+.black-login {
+    border-color: black;
+    color: black;
+}
+.login-form p {
+    max-width: 60%;
+    margin-bottom: 10px;
+}
+.invalid-login {
+    color: red;
+}

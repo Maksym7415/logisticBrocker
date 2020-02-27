@@ -34,7 +34,7 @@
 .vehicles-header-links + div {
     margin-left: auto;
     width: 10%;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #5555ff;
     padding-bottom: 1.5rem;
     display: flex;
@@ -42,6 +42,7 @@
 }
 .vehicles-header-links + div i {
     margin-right: 20px;
+    cursor: pointer;
 }
 .border-bottom {
     border-bottom: 1px solid #5555ff;

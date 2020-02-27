@@ -29,6 +29,9 @@ const Vehicles = (props) => {
     }
   }
 
+  const handleRefresh = () => props.getDrivers()
+  const handleClose = () => history.push('/')
+
   useEffect(() => {
     props.getDrivers()
   }, [])
@@ -53,9 +56,9 @@ const Vehicles = (props) => {
           </button>
         </div>
         <div>
-          <i className='fas fa-times' />
+          <i onClick={handleClose} className='fas fa-times' />
           <i className='fas fa-plus' />
-          <i className='fas fa-redo' />
+          <i onClick={handleRefresh} className='fas fa-redo' />
         </div>
         <div className='vehicles-grid-container'>
           <div>
@@ -91,13 +94,13 @@ const Vehicles = (props) => {
             </select>
           </div>
           {drivers.length !== 0 ? drivers.map((item) => {return (
-            <div className='drivers-item' key={item.id_driver}>
-              <span>{item.id_driver}</span>
+            <div className='drivers-item' key={item.id}>
+              <span>{item.id}</span>
               <span></span>
               <span>{item.name}</span>
               <span>{item.vehicle.model}</span>
               <span>{`${item.vehicle.length}x${item.vehicle.width}x${item.vehicle.height}`}</span>
-              <span className={item.status === 'Not Available' ? 'red' : ''}>{item.status}</span>
+              <span className={item.status === 'Not Available' ? 'red' : 'green'}>{item.status}</span>
               <span></span>
               <span></span>
               <span>

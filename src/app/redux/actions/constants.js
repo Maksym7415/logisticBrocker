@@ -13,7 +13,7 @@ const myAxios = (url, data) => axios({
 
 const allOrders = {
 	url: 'api/manager/getOrders',
-	method: 'get'
+	method: 'post'
 }
 
 const orderOne = {
@@ -27,7 +27,7 @@ const getDrivers = {
 }
 
 const sendMail = {
-	url: 'admin/sendMail',
+	url: 'api/manager/sendMail',
 	method: 'post'
 }
 
@@ -37,8 +37,8 @@ const changeStackStatus = {
 }
 
 const stackStatus = {
-	url: '',
-	method: 'get'
+	url: '/manager/changeStakeStatus',
+	method: 'put'
 }
 
 const driverOne = {
@@ -58,8 +58,9 @@ const placeBid = {
 
 const getStakes = {
 	url: 'api/manager/getStakes',
-	method: 'get'
+	method: 'post'
 }
+
 /*const myFetch = () => fetch('http://localhost:4000/admin/orders', {
 	method: 'get',
 	headers: {

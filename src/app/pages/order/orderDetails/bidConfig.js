@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { dive } from '../../../functions'
-import { actionSendMail, actionPlaceBid } from '../../../redux/actions'
+import { actionSendMail, actionChangeStake, actionPlaceBid } from '../../../redux/actions'
 import history from '../../../routing'
 import { actionDeletePromise } from '../../../redux/reducers/promiseReducer'
 
@@ -26,10 +26,10 @@ const ConfigOrder = (props) => {
   const mailParams = {
     from: 'danb41886@gmail.com',
     to: 'popovmaksim7415@gmail.com',
-    html: mail,
+    text: str,
     author: {
       name: props.manager && props.manager.name,
-      mail: 'danb41886@gmail.com'
+      mail: dive`${props.manager}user.email`
     }
   }
   const priceKmValue = (num) => {
@@ -65,16 +65,27 @@ const ConfigOrder = (props) => {
   }
 
   const handlePlaceBid = () => {
-    // props.sendMail(mailParams)
-    props.placeBid({
-      driver_price: driverPrice,
-      broker_price: bidPrice,
-      percent: percentValue(),
-      driver_id: driver.id,
-      order_id: order.id,
-      manager_id: props.manager.id,
-    })
+    props.sendMail(mailParams)
   }
+
+  const handleCloseBid = () => history.push('/')
+
+  const acceptStake = () => props.changeStatus({status: 'Accepted', id: props.stake && props.stake.id})
+
+  const rejectStake = () => props.changeStatus({status: 'Denied', id: props.stake && props.stake.id})
+
+  useEffect(() => {
+    if (props.mail === 'RESOLVED') {
+      props.placeBid({
+        driver_price: driverPrice,
+        broker_price: bidPrice,
+        percent: percentValue(),
+        driver_id: driver.id,
+        order_id: order.id,
+        manager_id: props.manager.id,
+      })
+    }
+  }, [props.mail])
 
   useEffect(() => {
     if (props.driver && props.driver[0] && props.driver[0].price) {
@@ -90,6 +101,12 @@ const ConfigOrder = (props) => {
       history.push('/')
     }
   }, [props.bid])
+
+  useEffect(() => {
+    if (props.stakeStatus) {
+      console.log(props.stakeStatus)
+    }
+  }, [props.stakeStatus])
 
   return (
     <div style={props.display} className='order-configuration'>
@@ -121,15 +138,36 @@ const ConfigOrder = (props) => {
           <p>{props.status !== false ? percentValue() + '%' : '-- %'}</p>
         </div>
         <div>
-          <textarea type='textarea' value={props.driver && props.status === false || props.bid === 'OK' ? '' : str} onChange={changeMail} />
-          <div>
-            <button onClick={handlePlaceBid}>PLACE BID</button>
-            <button>CLOSE</button>
-          </div>
+          <textarea type='textarea' value={props.status === false || props.bid === 'OK' ? '' : str} onChange={changeMail} />
+          {console.log(props.stake)}
+          {!props.stake ? (
+            <div className='place-bid-buttons'>
+              <button onClick={handlePlaceBid}>PLACE BID</button>
+              <button onClick={handleCloseBid}>CLOSE</button>
+            </div>
+          ) : (
+            <div className='change-bid-buttons'>
+              <button onClick={acceptStake}>ACCEPT</button>
+              <button onClick={rejectStake}>REJECT</button>
+              <button onClick={handleCloseBid}>CLOSE</button>
+            </div>
+          )}
         </div>
       </div>
     </div>
   )
 }
 
-export default connect(state => ({data: dive`${state}promise.sendMail.payload`, manager: dive`${state}promise.profile.payload.data`, order: dive`${state}promise.externalOne.payload.data`, bid: dive`${state}promise.placeBid.payload.data`}), {sendMail: actionSendMail, placeBid: actionPlaceBid, deleteBid: actionDeletePromise})(ConfigOrder)
+export default connect((state) => ({
+  data: dive`${state}promise.sendMail.payload`,
+  manager: dive`${state}promise.profile.payload.data`,
+  order: dive`${state}promise.externalOne.payload.data`,
+  bid: dive`${state}promise.placeBid.payload.data`,
+  mail: dive`${state}promise.sendMail.status`,
+  stakeStatus: dive`${state}promise.changeStake.payload.data`
+  }),
+  {sendMail: actionSendMail,
+  placeBid: actionPlaceBid,
+  deleteBid: actionDeletePromise,
+  changeStatus: actionChangeStake
+})(ConfigOrder)

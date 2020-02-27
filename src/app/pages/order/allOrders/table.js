@@ -1,7 +1,7 @@
 import React from 'react'
 import history from '../../../routing'
 
-const Table = (props) =>
+const Table = (props) => (
   <div className='grid-container'>
     <div>
       <span>Received</span>
@@ -33,5 +33,6 @@ const Table = (props) =>
       </div>
     )})}
   </div>
+)
 
-  export default Table
+export default Table

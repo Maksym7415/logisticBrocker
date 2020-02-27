@@ -9,7 +9,7 @@ const loginReducer = (state = {}, action) => {
 			return {token: action.token, data: jwt_decode(action.token)}
     },
     LOGOUT() {
-      localStorage.removeItem('RBTauth')
+      localStorage.removeItem('authToken')
       return {}
     }
   }

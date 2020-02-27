@@ -2,13 +2,15 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import history from '../../routing'
 import { dive } from '../../functions'
-import { actionGetProfile } from '../../redux/actions'
+import { actionGetProfile, actionLogout } from '../../redux/actions'
 
 const Header = (props) => {
 
   useEffect(() => {
-    props.getProfile(props.token)
-  }, [])
+    if (props.token) {
+      props.getProfile(props.token)
+    }
+  }, [props.token])
 
   return (
     <div className='header'>
@@ -28,10 +30,10 @@ const Header = (props) => {
           <span>{props.data && props.data.user && props.data.user.role}</span>
         </div>
         <img alt='avatar' src='../../../../../logo192.png' />
-        {props.data ? <button></button> : <button></button>}
+        {!props.token ? <button className='login-button'><i className="fas fa-sign-in-alt" /></button> : <button onClick={() => props.logout()} className='login-button'><i className="fas fa-sign-out-alt" /></button>}
       </div>
     </div>
   )
 } 
 
-export default connect(state => ({data: dive`${state}promise.profile.payload.data`, token: dive`${state}token.data.sub.id_user`}), {getProfile: actionGetProfile})(Header)
+export default connect(state => ({data: dive`${state}promise.profile.payload.data`, token: dive`${state}token.data.sub.id_user`}), {getProfile: actionGetProfile, logout: actionLogout})(Header)

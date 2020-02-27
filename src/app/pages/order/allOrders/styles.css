@@ -1,3 +1,6 @@
+.all-orders {
+    height: 80vh;
+}
 .controls {
     display: flex;
     flex-direction: row;
@@ -20,10 +23,12 @@
 .controls div > i {
     padding-right: 1rem;
     color: #0984ce;
+    cursor: pointer;
 }
 .grid-container {
     display: grid;
     padding: 0 1rem;
+    
 }
 .grid-container div {
     display: grid;
@@ -63,4 +68,11 @@
 .table-data span {
     display: flex;
     align-items: center;
+}
+#scrollDivOrders {
+    /* overflow: auto; */
+    height: 400px;
+}
+#scrollDivOrders::-webkit-scrollbar {
+    width: 0;
 }

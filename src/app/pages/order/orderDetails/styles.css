@@ -131,11 +131,23 @@
     border: 1px solid #6d6c6c;
     border-radius: 5px;
 }
-.order-configuration div div:last-child div button:first-child {
+.place-bid-buttons button:first-child {
     background-color: #18c06c;
     height: 2rem;;
 }
-.order-configuration div div:last-child div button:last-child {
+.place-bid-buttons button:last-child {
     background-color: #c0c0c0;
+    margin-left: auto;
+}
+.change-bid-buttons button:first-child {
+    background-color: #18c06c;
+    height: 2rem;;
+}
+.change-bid-buttons button:last-child {
+    background-color: #c0c0c0;
+    margin-left: auto;
+}
+.change-bid-buttons button:nth-child(2) {
+    background-color: #ff0000;
     margin-left: auto;
 }
