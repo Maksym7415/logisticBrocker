@@ -1,6 +1,6 @@
 import { actionPromise, actionDeletePromise } from '../reducers/promiseReducer'
 import { actionPromiseLogin } from '../reducers/loginReducer'
-import { myAxios, myFetch, allOrders, orderOne, getDrivers, placeBid, sendMail, changeStackStatus, stackStatus, driverOne, profile, getStakes } from './constants'
+import { myAxios, myFetch, allOrders, orderOne, getDrivers, placeBid, sendMail, changeStackStatus, stackStatus, driverOne, profile, getStakes, addUser } from './constants'
 
 const actionLogin = (token) => ({type: 'LOGIN', token})
 
@@ -24,6 +24,8 @@ const actionPlaceBid = (data) => actionPromise('placeBid', myAxios(placeBid, dat
 
 const actionGetStakes = (data) => actionPromise('bids', myAxios(getStakes, data))
 
-const actionChangeStake = (data) => actionPromise('changeStack', myAxios(stackStatus, data))
+const actionChangeStake = (data) => actionPromise('changeStake', myAxios(stackStatus, data))
 
-export { actionLogin, actionLogout, actionOnLogin, actionGetAllExternal, actionGetOneExternal, actionGetProfile, actionGetDrivers, actionSendMail, actionGetOneDriver, actionPlaceBid, actionGetStakes, actionChangeStake }
+const actionAddUser = (data) => actionPromise('addUser', myAxios(addUser, data))
+
+export { actionLogin, actionLogout, actionOnLogin, actionGetAllExternal, actionGetOneExternal, actionGetProfile, actionGetDrivers, actionSendMail, actionGetOneDriver, actionPlaceBid, actionGetStakes, actionChangeStake, actionAddUser }

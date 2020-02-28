@@ -87,7 +87,7 @@ const Bids = (props) => {
           {console.log(items)}
         </div>
         <div className='scroll' ref={scroll}>
-          {items.length !== 0 && items.map((item) => (
+          {items && items.length !== 0 && items.map((item) => (
             <div onClick={() => handleClick(item)} className={handleClassName(item)} key={item.id}>
               <span>{item.created}</span>
               <span>{item.order.broker.name}</span>

@@ -1,0 +1,47 @@
+.add-user {
+    display: flex;
+    flex-direction: column;
+    padding: 15%;
+    justify-content: center;
+    height: 100%;
+}
+.add-user h3 {
+    align-self: center;
+}
+.add-user > div {
+    display: flex;
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.add-user > div label {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+}
+.add-user > div label span {
+    font-size: 20px;
+    padding: 5px 5px 0 0;
+    color: red;
+}
+.add-user > div label input {
+    outline: none;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #a6a6a6
+}
+.add-user > div label select {
+    outline: none;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #a6a6a6
+}
+.add-user button {
+    width: 20%;
+    padding: 1rem;
+    height: 10px;
+    margin-left: auto;
+    line-height: 0;
+    border-radius: 5px;
+    background-color: #00a400;
+}

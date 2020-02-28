@@ -10,6 +10,8 @@
 @import url('app/components/pagination/styles.css');
 @import url('app/pages/auth/styles.css');
 @import url('app/components/access/styles.css');
+@import url('app/pages/settings/styles.css');
+@import url('app/components/messages//styles.css');
 
 body {
   margin: 0;

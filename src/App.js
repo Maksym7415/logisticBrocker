@@ -12,10 +12,11 @@ import Bids from './app/pages/bids'
 import ManagerRoute from './app/routing/managerRoute'
 import Map from './app/map'
 import Vehicles from './app/pages/vehicles'
-import Pagination from './app/components/pagination'
+import Message from './app/components/messages'
 import AdminRoute from './app/routing/adminRouter'
 import Access from './app/components/access'
 import NotFound from './app/components/notfound'
+import AddUser from './app/pages/settings'
 
 function App() {
   return (
@@ -30,8 +31,9 @@ function App() {
             <ManagerRoute fallback='/login' path='/' exact component={ExternalOrders} />
             <ManagerRoute fallback='/login' path='/order_details/:id' exact component={OrderDetails} />
             <ManagerRoute fallback='/login' path='/vehicles' exact component={Vehicles} />
-            <Route fallback='/denied' path= '/pagination' exact component={Pagination} />
+            <Route path='/message' exact component={Message} />
             <ManagerRoute fallback='/login' path='/bids' exact component={Bids} />
+            <ManagerRoute fallback='/' path='/settings' exact component={AddUser} />
             <Route path='*' component={NotFound}/>
           </Switch>
         </div>

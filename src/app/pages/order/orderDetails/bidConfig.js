@@ -65,7 +65,9 @@ const ConfigOrder = (props) => {
   }
 
   const handlePlaceBid = () => {
-    props.sendMail(mailParams)
+    if (driver) {
+      props.sendMail(mailParams)
+    }
   }
 
   const handleCloseBid = () => history.push('/')
@@ -99,13 +101,23 @@ const ConfigOrder = (props) => {
   useEffect(() => {
     if (props.bid === 'OK') {
       props.deletePromise('placeBid')
-      history.push('/')
+      history.push({
+        pathname: '/message',
+        state: {
+          message: 'Bid added succesfully'
+        }
+      })
     }
   }, [props.bid])
 
   useEffect(() => {
     if (props.stakeStatus) {
-      history.push('/bids')
+      history.push({
+        pathname: '/message',
+        state: {
+          message: props.stakeStatus
+        }
+      })
     }
   }, [props.stakeStatus])
 
@@ -140,7 +152,7 @@ const ConfigOrder = (props) => {
         </div>
         <div>
           <textarea type='textarea' value={props.status === false || props.bid === 'OK' ? '' : str} onChange={changeMail} />
-          {console.log(props.stake)}
+          {console.log(props.stakeStatus)}
           {!props.stake ? (
             <div className='place-bid-buttons'>
               <button onClick={handlePlaceBid}>PLACE BID</button>

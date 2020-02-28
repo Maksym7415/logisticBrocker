@@ -61,6 +61,11 @@ const getStakes = {
 	method: 'post'
 }
 
+const addUser = {
+	url: 'api/admin/register',
+	method: 'post'
+}
+
 /*const myFetch = () => fetch('http://localhost:4000/admin/orders', {
 	method: 'get',
 	headers: {
@@ -69,4 +74,4 @@ const getStakes = {
 		}
 }).then(res => res.json).then(res => console.log(res)).catch(e => console.log(e))
 */
-export { myAxios, allOrders, orderOne, getDrivers, sendMail, changeStackStatus, stackStatus, driverOne, profile, placeBid, getStakes }
+export { myAxios, allOrders, orderOne, getDrivers, sendMail, changeStackStatus, stackStatus, driverOne, profile, placeBid, getStakes, addUser }

@@ -21,7 +21,7 @@ const ExternalOrders = (props) => {
     }
   }, [div.current && div.current.onscroll])
 
-  useEffect(() => {
+ useEffect(() => {
 		props.externalOrders({offset})
 		console.log(0)
   }, [])
@@ -41,7 +41,7 @@ const ExternalOrders = (props) => {
     }
 	}, [props.data])
 	
-	/* useEffect(() => {
+	/*useEffect(() => {
     if (props.data) {
       setItems((prevState) => {
         if (prevState.length !== [...prevState, props.data].length) {
@@ -50,7 +50,7 @@ const ExternalOrders = (props) => {
 			})
 			console.log(2)
     }
-  }, [props.data]) */
+  }, [props.data])*/
 
   useEffect(() => {
     return () => props.deletePromise('externalAll')
@@ -95,7 +95,7 @@ const ExternalOrders = (props) => {
 				</div>
 				{console.log(items)}
 				<div className='all-orders-scroll' ref={div} >
-					{items.length !== null && items.map((item) => (
+					{items && items.length !== 0 && items.map((item) => (
 						<div key={item.id} className='table-data' onClick={() => history.push(`/order_details/${item.id}`)}>
 							<span>{item.received}</span>
 							<span>{item.pickup}</span>

@@ -31,6 +31,7 @@ const Vehicles = (props) => {
 
   const handleRefresh = () => props.getDrivers()
   const handleClose = () => history.push('/')
+  const handleAddVehicle = () => history.push('/settings')
 
   useEffect(() => {
     props.getDrivers()
@@ -57,7 +58,7 @@ const Vehicles = (props) => {
         </div>
         <div>
           <i onClick={handleClose} className='fas fa-times' />
-          <i className='fas fa-plus' />
+          <i onClick={handleAddVehicle} className='fas fa-plus' />
           <i onClick={handleRefresh} className='fas fa-redo' />
         </div>
         <div className='vehicles-grid-container'>

@@ -15,14 +15,14 @@ const Header = (props) => {
   return (
     <div className='header'>
       <div>
-        <span>BETA LOGISTICS</span>
+        <span>LOGISTICBROCKER</span>
         <button onClick={() => history.push('/')}>
           <i className='fas fa-envelope' />
           DISPATCH
         </button>
         <button onClick={() => history.push('/bids')}><i className="fas fa-dollar-sign"></i> BIDS </button>
         <button onClick={() => history.push('/vehicles')}><i className="fas fa-truck" ></i> VEHICLES </button>
-        <button><i className="fas fa-cog"></i> SETTINGS </button>
+        <button onClick={() => history.push('/settings')}><i className="fas fa-cog"></i> SETTINGS </button>
       </div>
       <div>
         <div>
