@@ -1,22 +1,17 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import Modal from '../../components/modal'
 import Preloader from '../../components/preloader'
 import { dive } from '../../functions'
 import history from '../../routing'
 import { actionGetStakes } from '../../redux/actions'
-import InfiniteScroll from 'react-infinite-scroll-component'
+import { actionDeletePromise } from '../../redux/reducers/promiseReducer'
 
 const Bids = (props) => {
+  let [items, setItems] = useState([])
   let [offset, setOffset] = useState(0)
-  const [items, setItems] = useState([])
-  let [hasMore] = useState(true)
+  const scroll = useRef(null)
 
-  const fetchMoreData = () => {
-    setOffset(offset += 50)
-    console.log(offset)
-    props.bids({offset: offset})
-  }
 
   const handleClassName = (bid) => {
     if (bid.status === 'Accepted') {
@@ -29,7 +24,6 @@ const Bids = (props) => {
       return 'bids-item bids-item denied'
     }
   }
-
   const handleClick = (bid) => {
     if (bid.status === 'Pending') {
       history.push({
@@ -44,14 +38,38 @@ const Bids = (props) => {
   }
 
   useEffect(() => {
+    scroll.current.onscroll = () => {
+      if (scroll.current.scrollHeight - scroll.current.scrollTop === scroll.current.clientHeight) {
+        setOffset(offset += 50)
+        props.bids({offset})
+        console.log('2')
+      }
+    }
+  }, [scroll.current && scroll.current.scrollHeight])
+
+  useEffect(() => {
     props.bids({offset})
+    console.log(0)
   }, [])
 
   useEffect(() => {
     if (props.data) {
-      setItems((prevState) => [...prevState, ...props.data])
+      setItems((prevState) => {
+        if (prevState.length !== props.data.length || prevState[0].id !== props.data[0].id) {
+          console.log(prevState, props.data[0].id)
+          console.log(1)
+          return [...prevState, ...props.data]
+        } else {
+          console.log('1-1')
+          return setItems([...props.data])
+        }
+      })
     }
   }, [props.data])
+
+  useEffect(() => {
+    return () => props.deletePromise('bids')
+  }, [])
 
   return (
     <Modal clickOpacity={() => history.push('/')} width='90%' height='90%' show={true} >
@@ -66,34 +84,10 @@ const Bids = (props) => {
           <span>Prices</span>
           <span>Percent</span>
           <span>Dispatcher</span>
-          {console.log(offset)}
+          {console.log(items)}
         </div>
-        {props.data ? (
-          <div id="scrollableDiv" >
-            <InfiniteScroll
-              dataLength={items.length}
-              next={fetchMoreData}
-              hasMore={hasMore}
-              loader={<Preloader/>}
-              scrollableTarget='scrollableDiv'>
-              {items.map((item) => (
-                <div onClick={() => handleClick(item)} className={handleClassName(item)} key={item.id}>
-                  <span>{item.created}</span>
-                  <span>{item.order.broker.name}</span>
-                  <span>{item.order.pickup}</span>
-                  <span>{item.order.deliver}</span>
-                  <span>{item.order.id}</span>
-                  <span>{item.order.earth_miles}</span>
-                  <span>
-                    {`${item.broker_price} / ${item.driver_price}`}
-                  </span>
-                  <span>{item.percent} %</span>
-                  <span>{item.manager.name}</span>
-                </div>
-              ))}
-            </InfiniteScroll>
-          </div>
-          /*props.data.map((item) => (
+        <div className='scroll' ref={scroll}>
+          {items.length !== 0 && items.map((item) => (
             <div onClick={() => handleClick(item)} className={handleClassName(item)} key={item.id}>
               <span>{item.created}</span>
               <span>{item.order.broker.name}</span>
@@ -104,13 +98,14 @@ const Bids = (props) => {
               <span>
                 {`${item.broker_price} / ${item.driver_price}`}
               </span>
-              <span>{item.percent} %</span>
+              <span>{`${item.percent} %`}</span>
               <span>{item.manager.name}</span>
             </div>
-          ))*/) : <Preloader />}
+          ))}
+        </div>
       </div>
     </Modal>
   )
 }
 
-export default connect((state) => ({data: dive`${state}promise.bids.payload.data`}), {bids: actionGetStakes})(Bids)
+export default connect((state) => ({data: dive`${state}promise.bids.payload.data`}), {bids: actionGetStakes, deletePromise: actionDeletePromise})(Bids)

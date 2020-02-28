@@ -1,16 +1,12 @@
 .bids-container {
     display: grid;
     padding: 2.5rem;
-    overflow-x: scroll;
     height: 100%;
     align-content: flex-start;
 }
 .bids-header {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-}
-.bids-container::-webkit-scrollbar { 
-    width: 0; 
 }
 .bids-header {
     align-content: center;
@@ -34,16 +30,15 @@
 .accepted {
     background-color: #00ae00;
 }
-#scrollableDiv {
-    display: grid;
-    overflow: auto;
-    height: 100%;
-    align-content: flex-start;
-}
 .bids-item {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
 }
-#scrollableDiv::-webkit-scrollbar {
+.scroll {
+    overflow-y: scroll;
+    height: 70vh;
+    position: relative;
+}
+.scroll::-webkit-scrollbar {
     width: 0;
 }

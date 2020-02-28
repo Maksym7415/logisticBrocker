@@ -32,12 +32,12 @@ const sendMail = {
 }
 
 const changeStackStatus = {
-	url: '',
+	url: 'api/manager/changeStakeStatus',
 	method: 'put'
 }
 
 const stackStatus = {
-	url: '/manager/changeStakeStatus',
+	url: 'api/manager/changeStakeStatus',
 	method: 'put'
 }
 

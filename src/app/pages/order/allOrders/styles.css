@@ -1,5 +1,5 @@
 .all-orders {
-    height: 80vh;
+    height: 75vh;
 }
 .controls {
     display: flex;
@@ -30,17 +30,32 @@
     padding: 0 1rem;
     
 }
-.grid-container div {
+.all-orders-scroll {
+    height: 50vh;
+    display: grid;
+    overflow-y: scroll;
+}
+.all-orders-scroll > div {
+    max-height: 30px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     align-content: center;
 }
+.all-orders-scroll::-webkit-scrollbar {
+    width: 0;
+}
 .grid-container > div:first-child {
     padding: 1rem 0;
     border-bottom: 1px solid #686565;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    align-content: center;
 }
 .grid-container > div:nth-child(2) {
     padding: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    align-content: center;
 }
 .grid-container > div:nth-child(2) label {
     display: flex;
@@ -56,7 +71,7 @@
     width: 100%;
     outline: none;
 }
-.grid-container .table-data:nth-child(even) {
+.table-data:nth-child(even) {
     background-color: #ddd8d8;
 }
 .table-data {
@@ -68,11 +83,4 @@
 .table-data span {
     display: flex;
     align-items: center;
-}
-#scrollDivOrders {
-    /* overflow: auto; */
-    height: 400px;
-}
-#scrollDivOrders::-webkit-scrollbar {
-    width: 0;
 }

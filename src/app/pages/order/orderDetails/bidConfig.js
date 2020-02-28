@@ -84,6 +84,7 @@ const ConfigOrder = (props) => {
         order_id: order.id,
         manager_id: props.manager.id,
       })
+      props.deletePromise('sendMail')
     }
   }, [props.mail])
 
@@ -97,14 +98,14 @@ const ConfigOrder = (props) => {
 
   useEffect(() => {
     if (props.bid === 'OK') {
-      props.deleteBid('placeBid')
+      props.deletePromise('placeBid')
       history.push('/')
     }
   }, [props.bid])
 
   useEffect(() => {
     if (props.stakeStatus) {
-      console.log(props.stakeStatus)
+      history.push('/bids')
     }
   }, [props.stakeStatus])
 
@@ -168,6 +169,6 @@ export default connect((state) => ({
   }),
   {sendMail: actionSendMail,
   placeBid: actionPlaceBid,
-  deleteBid: actionDeletePromise,
+  deletePromise: actionDeletePromise,
   changeStatus: actionChangeStake
 })(ConfigOrder)

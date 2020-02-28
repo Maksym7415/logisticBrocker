@@ -26,7 +26,7 @@ function App() {
           <Switch>
             <Route path= '/denied' exact component={Access} />
             <Route path= '/login' exact component={Authorization} />
-            <ManagerRoute fallback='/login' path= '/map/:coord' exact component={Map} />
+            <ManagerRoute fallback='/login' path='/map/:coord' exact component={Map} />
             <ManagerRoute fallback='/login' path='/' exact component={ExternalOrders} />
             <ManagerRoute fallback='/login' path='/order_details/:id' exact component={OrderDetails} />
             <ManagerRoute fallback='/login' path='/vehicles' exact component={Vehicles} />
