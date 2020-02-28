@@ -109,9 +109,21 @@ const ConfigOrder = (props) => {
       })
     }
   }, [props.bid])
+  
+  useEffect(() => {
+    if (props.bidError === 'ERROR') {
+      history.push({
+        pathname: '/message',
+        state: {
+          message: 'This order already exists'
+        }
+      })
+    }
+  }, [props.bidError])
 
   useEffect(() => {
     if (props.stakeStatus) {
+      props.deletePromise('changeStake')
       history.push({
         pathname: '/message',
         state: {
@@ -152,7 +164,6 @@ const ConfigOrder = (props) => {
         </div>
         <div>
           <textarea type='textarea' value={props.status === false || props.bid === 'OK' ? '' : str} onChange={changeMail} />
-          {console.log(props.stakeStatus)}
           {!props.stake ? (
             <div className='place-bid-buttons'>
               <button onClick={handlePlaceBid}>PLACE BID</button>
@@ -176,6 +187,7 @@ export default connect((state) => ({
   manager: dive`${state}promise.profile.payload.data`,
   order: dive`${state}promise.externalOne.payload.data`,
   bid: dive`${state}promise.placeBid.payload.data`,
+  bidError: dive`${state}promise.placeBid.status`,
   mail: dive`${state}promise.sendMail.status`,
   stakeStatus: dive`${state}promise.changeStake.payload.data`
   }),

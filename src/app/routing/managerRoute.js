@@ -7,7 +7,7 @@ const ManagerRoute = (props) => (
   <Route {...props}
     component={(pageComponentProps) => {
       const PageComponent = props.component
-      if (props.data === 'manager') { //I'm making here double check with 'or' because when I'm subscribed only on redux on re-login localStorage resave ddata with empty fields, but when I'm subscribed only on localStorage - on logout from privatRoute component I'm not redirecting to 'fallback'
+      if (props.data === 'manager' || props.data === 'admin') { //I'm making here double check with 'or' because when I'm subscribed only on redux on re-login localStorage resave ddata with empty fields, but when I'm subscribed only on localStorage - on logout from privatRoute component I'm not redirecting to 'fallback'
         return (
           <PageComponent {...pageComponentProps}/>
         )

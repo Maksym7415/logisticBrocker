@@ -31,7 +31,12 @@ const AddUser = (props) => {
 
   useEffect(() => {
     if (props.user) {
-      history.push('/')
+      history.push({
+        pathname: '/message',
+        state: {
+          message: 'New user added successfully'
+        }
+      })
     }
   }, [props.user])
 

@@ -48,8 +48,12 @@ const Bids = (props) => {
   }, [scroll.current && scroll.current.scrollHeight])
 
   useEffect(() => {
-    props.bids({offset})
-    console.log(0)
+    if (!props.oneId) { 
+      props.bids({offset})
+      console.log(0)
+    } else {
+      props.bids({driver:props.oneId})
+    }
   }, [])
 
   useEffect(() => {
@@ -108,4 +112,4 @@ const Bids = (props) => {
   )
 }
 
-export default connect((state) => ({data: dive`${state}promise.bids.payload.data`}), {bids: actionGetStakes, deletePromise: actionDeletePromise})(Bids)
+export default connect((state) => ({data: dive`${state}promise.bids.payload.data`, oneId: dive`${state}synchro.id`}), {bids: actionGetStakes, deletePromise: actionDeletePromise})(Bids)

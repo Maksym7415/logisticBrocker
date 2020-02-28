@@ -33,7 +33,7 @@ function App() {
             <ManagerRoute fallback='/login' path='/vehicles' exact component={Vehicles} />
             <Route path='/message' exact component={Message} />
             <ManagerRoute fallback='/login' path='/bids' exact component={Bids} />
-            <ManagerRoute fallback='/' path='/settings' exact component={AddUser} />
+            <AdminRoute fallback='/' path='/settings' exact component={AddUser} />
             <Route path='*' component={NotFound}/>
           </Switch>
         </div>

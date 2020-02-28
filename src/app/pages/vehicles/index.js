@@ -1,14 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Modal from '../../components/modal'
 import history from '../../routing'
 import { actionGetDrivers } from '../../redux/actions'
 import { dive } from '../../functions'
 import Preloader from '../../components/preloader'
+import { addDriverOrder, delOrder } from '../../redux/reducers/synchro'
 
 const Vehicles = (props) => {
   let [drivers, setDrivers] = useState([])
   let [status, setStatus] = useState('')
+  let [flag, setFlag] = useState(false)
 
   const handleStatus = (e) => {
     if (e.target.value === 'All') {
@@ -32,6 +34,17 @@ const Vehicles = (props) => {
   const handleRefresh = () => props.getDrivers()
   const handleClose = () => history.push('/')
   const handleAddVehicle = () => history.push('/settings')
+  const handleDriverFlag = (e, id) => {
+    if(flag === false) {
+      console.log(e.target)
+      props.addDriverOrder(id)
+      setFlag(true)
+    } else {
+      props.delOrder()
+      setFlag(false)
+    }
+  }
+  const event = (e) => console.log(e.target)
 
   useEffect(() => {
     props.getDrivers()
@@ -105,8 +118,8 @@ const Vehicles = (props) => {
               <span></span>
               <span></span>
               <span>
-                <i className='far fa-flag' />
-                <i className='far fa-star' />
+                <i onClick={() => handleDriverFlag(item.id)} className='far fa-flag' />
+                <i onClick={event} className='far fa-star' />
                 <i className='fas fa-pen' />
               </span>
             </div>
@@ -117,4 +130,4 @@ const Vehicles = (props) => {
   )
 }
 
-export default connect((state) => ({drivers: dive`${state}promise.drivers.payload.data`}), {getDrivers: actionGetDrivers})(Vehicles)
+export default connect((state) => ({drivers: dive`${state}promise.drivers.payload.data`, flag: dive`${state}synchro`}), {getDrivers: actionGetDrivers, addDriverOrder, delOrder})(Vehicles)

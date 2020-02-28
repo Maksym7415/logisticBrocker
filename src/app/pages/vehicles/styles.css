@@ -126,3 +126,9 @@
 .blue {
     background-color: #5ecdf2;
 }
+.redColor {
+    color: red;
+}
+.normalColor {
+    color: transparent;
+}
