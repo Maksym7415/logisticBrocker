@@ -14,16 +14,16 @@ const ExternalOrders = (props) => {
   useEffect(() => {
     div.current.onscroll = () => {
       if (div.current.scrollHeight - div.current.scrollTop === div.current.clientHeight) {
-				setOffset(offset += 50)
-				console.log(1)
+        setOffset(offset += 50)
+        console.log(1)
         props.externalOrders({offset})
       }
     }
   }, [div.current && div.current.onscroll])
 
- useEffect(() => {
-		props.externalOrders({offset})
-		console.log(0)
+  useEffect(() => {
+    props.externalOrders({offset})
+    console.log(0)
   }, [])
 
   useEffect(() => {
@@ -41,14 +41,14 @@ const ExternalOrders = (props) => {
     }
 	}, [props.data])
 	
-	/*useEffect(() => {
+  /*useEffect(() => {
     if (props.data) {
       setItems((prevState) => {
         if (prevState.length !== [...prevState, props.data].length) {
           return [...prevState, ...props.data]
         }
-			})
-			console.log(2)
+      })
+      console.log(2)
     }
   }, [props.data])*/
 
@@ -63,12 +63,12 @@ const ExternalOrders = (props) => {
   }
 
   return (
-		<div className='all-orders'>
+    <div className='all-orders'>
 			<div className='controls'>
 				<label><input type='checkbox' value='false' onChange={props.onChange} />Some checkbox</label>
 				<select>
-					<option>All products</option>
-				</select>
+				<option>All products</option>
+							</select>
 				<div>
 					<i className="fas fa-pause"></i>
 					<i onClick={handleRefresh} className="fas fa-redo"></i>
@@ -93,7 +93,7 @@ const ExternalOrders = (props) => {
 					<label><i className="fas fa-search"></i><input placeholder='Filter'/></label>
 					<label><i className="fas fa-search"></i><input placeholder='Filter'/></label>
 				</div>
-				{console.log(items)}
+				{console.log(props)}
 				<div className='all-orders-scroll' ref={div} >
 					{items && items.length !== 0 && items.map((item) => (
 						<div key={item.id} className='table-data' onClick={() => history.push(`/order_details/${item.id}`)}>

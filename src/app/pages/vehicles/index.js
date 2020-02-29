@@ -34,9 +34,8 @@ const Vehicles = (props) => {
   const handleRefresh = () => props.getDrivers()
   const handleClose = () => history.push('/')
   const handleAddVehicle = () => history.push('/settings')
-  const handleDriverFlag = (e, id) => {
+  const handleDriverFlag = (id) => {
     if(flag === false) {
-      console.log(e.target)
       props.addDriverOrder(id)
       setFlag(true)
     } else {
@@ -44,7 +43,6 @@ const Vehicles = (props) => {
       setFlag(false)
     }
   }
-  const event = (e) => console.log(e.target)
 
   useEffect(() => {
     props.getDrivers()
@@ -119,7 +117,7 @@ const Vehicles = (props) => {
               <span></span>
               <span>
                 <i onClick={() => handleDriverFlag(item.id)} className='far fa-flag' />
-                <i onClick={event} className='far fa-star' />
+                <i className='far fa-star' />
                 <i className='fas fa-pen' />
               </span>
             </div>

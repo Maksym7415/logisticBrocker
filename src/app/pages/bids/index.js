@@ -42,7 +42,7 @@ const Bids = (props) => {
       if (scroll.current.scrollHeight - scroll.current.scrollTop === scroll.current.clientHeight) {
         setOffset(offset += 50)
         props.bids({offset})
-        console.log('2')
+        console.log('bids2')
       }
     }
   }, [scroll.current && scroll.current.scrollHeight])
@@ -50,21 +50,19 @@ const Bids = (props) => {
   useEffect(() => {
     if (!props.oneId) { 
       props.bids({offset})
-      console.log(0)
+      console.log('bids0')
     } else {
       props.bids({driver:props.oneId})
     }
   }, [])
 
   useEffect(() => {
+    console.log('bids1')
     if (props.data) {
       setItems((prevState) => {
         if (prevState.length !== props.data.length || prevState[0].id !== props.data[0].id) {
-          console.log(prevState, props.data[0].id)
-          console.log(1)
           return [...prevState, ...props.data]
         } else {
-          console.log('1-1')
           return setItems([...props.data])
         }
       })
@@ -88,7 +86,7 @@ const Bids = (props) => {
           <span>Prices</span>
           <span>Percent</span>
           <span>Dispatcher</span>
-          {console.log(items)}
+          {console.log(props)}
         </div>
         <div className='scroll' ref={scroll}>
           {items && items.length !== 0 && items.map((item) => (
