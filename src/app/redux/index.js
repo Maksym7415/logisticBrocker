@@ -6,14 +6,14 @@ import { actionLogin } from './actions'
 import { synchroReducer } from './reducers/synchro'
 
 const reducers = combineReducers({
-  token: loginReducer,
-  promise: promiseReducer,
-  synchro: synchroReducer
+	token: loginReducer,
+	promise: promiseReducer,
+	synchro: synchroReducer
 })
 
 const store = createStore(reducers, applyMiddleware(thunk))
 if (localStorage.authToken) {
-  store.dispatch(actionLogin(localStorage.authToken))
+	store.dispatch(actionLogin(localStorage.authToken))
 }
 
 store.subscribe(() => console.log(store.getState()))

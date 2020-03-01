@@ -19,27 +19,27 @@ import NotFound from './app/components/notfound'
 import AddUser from './app/pages/settings'
 
 function App() {
-  return (
-    <Provider store= {store}>
-      <Router history= {history}>
-        <div className='App'>
-          <Header />
-          <Switch>
-            <Route path= '/denied' exact component={Access} />
-            <Route path= '/login' exact component={Authorization} />
-            <ManagerRoute fallback='/login' path='/map/:coord' exact component={Map} />
-            <ManagerRoute fallback='/login' path='/' exact component={ExternalOrders} />
-            <ManagerRoute fallback='/login' path='/order_details/:id' exact component={OrderDetails} />
-            <ManagerRoute fallback='/login' path='/vehicles' exact component={Vehicles} />
-            <Route path='/message' exact component={Message} />
-            <ManagerRoute fallback='/login' path='/bids' exact component={Bids} />
-            <AdminRoute fallback='/' path='/settings' exact component={AddUser} />
-            <Route path='*' component={NotFound}/>
-          </Switch>
-        </div>
-      </Router>
-    </Provider>
-  )
+	return (
+		<Provider store= {store}>
+			<Router history= {history}>
+				<div className='App'>
+					<Header />
+					<Switch>
+						<Route path= '/denied' exact component={Access} />
+						<Route path= '/login' exact component={Authorization} />
+						<ManagerRoute fallback='/login' path='/map/:coord' exact component={Map} />
+						<ManagerRoute fallback='/login' path='/' exact component={ExternalOrders} />
+						<ManagerRoute fallback='/login' path='/order_details/:id' exact component={OrderDetails} />
+						<ManagerRoute fallback='/login' path='/vehicles' exact component={Vehicles} />
+						<Route path='/message' exact component={Message} />
+						<ManagerRoute fallback='/login' path='/bids' exact component={Bids} />
+						<AdminRoute fallback='/' path='/settings' exact component={AddUser} />
+						<Route path='*' component={NotFound}/>
+					</Switch>
+				</div>
+			</Router>
+		</Provider>
+	)
 }
 
 export default App

@@ -1,41 +1,3 @@
-/*module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true,
-    },
-    "extends": [
-        "react-app",
-        "airbnb",
-    ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "plugins": ["react"],
-    "rules": {
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "semi": [
-            "error", 
-            "never"
-        ],
-        "arrow-spacing": [
-            "error",
-        ],
-        "no-console": [
-            "error",
-        ],
-    }
-};*/
 module.exports = {
     "env": {
         "browser": true,
@@ -103,7 +65,16 @@ module.exports = {
         "jsx-a11y/label-has-for": 0,
         "jsx-a11y/label-has-associated-control": 0,
         "react/button-has-type": 0,
-        "no-tabs": ["error", { allowIndentationTabs: true }],
+        "no-tabs": [
+            "error", 
+            { allowIndentationTabs: true }
+        ],
+        "indent": [
+            "error",
+            "tab"
+        ],
+        "react/jsx-indent": [2, "tab"],
+        "react/jsx-indent-props": [2, "tab"],
     }
 };
 
