@@ -15,7 +15,7 @@ const ExternalOrders = (props) => {
 		div.current.onscroll = () => {
 			if (div.current.scrollHeight - div.current.scrollTop === div.current.clientHeight) {
 				setOffset(offset += 50)
-				console.log(1)
+				// console.log(1)
 				props.externalOrders({offset})
 			}
 		}
@@ -23,27 +23,27 @@ const ExternalOrders = (props) => {
 
 	useEffect(() => {
 		props.externalOrders({offset})
-		console.log(0)
+		// console.log(0)
 	}, [])
 
 	useEffect(() => {
 		if (props.data) {
 			setItems((prevState) => {
 				if (prevState.length !== props.data.length || prevState[0].id !== props.data[0].id) {
-					console.log(prevState, props.data[0].id)
-					console.log(1)
+					// console.log(prevState, props.data[0].id)
+					// console.log(1)
 					return [...prevState, ...props.data]
 				}
-				console.log('1-1')
+				// console.log('1-1')
 				return setItems([...props.data])
 			})
 		}
 	}, [props.data])
 
-	useEffect(() => {
+	/*useEffect(() => {
 		return () => props.deletePromise('externalAll')
 	}, [])
-
+*/
 	const handleRefresh = () => {
 		setItems([])
 		setOffset(0)
@@ -90,7 +90,7 @@ const ExternalOrders = (props) => {
 					<label><i className='fas fa-search'></i><input placeholder='Filter'/></label>
 					<label><i className='fas fa-search'></i><input placeholder='Filter'/></label>
 				</div>
-				{console.log(props)}
+				{console.log(items)}
 				<div className='all-orders-scroll' ref={div} >
 					{items && items.length !== 0 && items.map((item) => (
 						<div key={item.id} className='table-data' onClick={() => history.push(`/order_details/${item.id}`)}>

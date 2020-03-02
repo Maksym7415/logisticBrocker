@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-const myAxios = (url, data) => axios({
+const myAxios = (url, data) => () => axios({
 	method: url.method,
 	url: '//test.popovmaksim7415.node.a-level.com.ua/'+ url.url,
 	headers: localStorage.authToken ? {
-		Content-Type: `application/json`,
+		'Content-Type': `application/json`,
 		Authorization: `Bearer ${localStorage.authToken}`,
-	} : {Content-Type: `application/json`},
+	} : {'Content-Type': `application/json`},
 	data: JSON.stringify(data)
 })
 
