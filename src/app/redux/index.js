@@ -1,10 +1,12 @@
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import {
+	createStore, combineReducers, compose, applyMiddleware
+} from 'redux'
 import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import { promiseReducer } from './reducers/promiseReducer'
 import { loginReducer} from './reducers/loginReducer'
 import { actionLogin } from './actions'
 import { synchroReducer } from './reducers/synchro'
-import { composeWithDevTools } from 'redux-devtools-extension'
 
 const composeEnhancers = composeWithDevTools({trace: true})
 const reducers = combineReducers({
@@ -17,7 +19,7 @@ const store = createStore(
 	reducers,
 	composeEnhancers(
 		applyMiddleware(thunk)
-	)	
+	)
 )
 
 if (localStorage.authToken) {

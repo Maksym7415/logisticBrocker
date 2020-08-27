@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import { Provider }   from 'react-redux'
+import { Provider } from 'react-redux'
 import { Router, Route, Switch } from 'react-router-dom'
 import store from './app/redux'
 import history from './app/routing'
@@ -20,13 +20,13 @@ import AddUser from './app/pages/settings'
 
 function App() {
 	return (
-		<Provider store= {store}>
-			<Router history= {history}>
+		<Provider store={store}>
+			<Router history={history}>
 				<div className='App'>
 					<Header />
 					<Switch>
-						<Route path= '/denied' exact component={Access} />
-						<Route path= '/login' exact component={Authorization} />
+						<Route path='/denied' exact component={Access} />
+						<Route path='/login' exact component={Authorization} />
 						<ManagerRoute fallback='/login' path='/map/:coord' exact component={Map} />
 						<ManagerRoute fallback='/login' path='/' exact component={ExternalOrders} />
 						<ManagerRoute fallback='/login' path='/order_details/:id' exact component={OrderDetails} />
@@ -34,7 +34,7 @@ function App() {
 						<Route path='/message' exact component={Message} />
 						<ManagerRoute fallback='/login' path='/bids' exact component={Bids} />
 						<AdminRoute fallback='/' path='/settings' exact component={AddUser} />
-						<Route path='*' component={NotFound}/>
+						{/* <Route component={NotFound} /> */}
 					</Switch>
 				</div>
 			</Router>

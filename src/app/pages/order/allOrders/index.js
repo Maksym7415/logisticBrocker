@@ -40,7 +40,7 @@ const ExternalOrders = (props) => {
 		}
 	}, [props.data])
 
-	/*useEffect(() => {
+	/* useEffect(() => {
 		return () => props.deletePromise('externalAll')
 	}, [])
 */
@@ -83,15 +83,27 @@ const ExternalOrders = (props) => {
 					</label>
 					<label>
 						<i className='fas fa-search' />
-						<input placeholder='Filter'/>
+						<input placeholder='Filter' />
 					</label>
-					<label><i className='fas fa-search'></i><input placeholder='Filter'/></label>
-					<label><i className='fas fa-search'></i><input placeholder='Filter'/></label>
-					<label><i className='fas fa-search'></i><input placeholder='Filter'/></label>
-					<label><i className='fas fa-search'></i><input placeholder='Filter'/></label>
+					<label>
+						<i className='fas fa-search' />
+						<input placeholder='Filter' />
+					</label>
+					<label>
+						<i className='fas fa-search' />
+						<input placeholder='Filter' />
+					</label>
+					<label>
+						<i className='fas fa-search' />
+						<input placeholder='Filter' />
+					</label>
+					<label>
+						<i className='fas fa-search' />
+						<input placeholder='Filter' />
+					</label>
 				</div>
 				{console.log(items)}
-				<div className='all-orders-scroll' ref={div} >
+				<div className='all-orders-scroll' ref={div}>
 					{items && items.length !== 0 && items.map((item) => (
 						<div key={item.id} className='table-data' onClick={() => history.push(`/order_details/${item.id}`)}>
 							<span>{item.received}</span>

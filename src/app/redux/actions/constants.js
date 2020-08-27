@@ -2,11 +2,11 @@ import axios from 'axios'
 
 const myAxios = (url, data) => () => axios({
 	method: url.method,
-	url: '//test.popovmaksim7415.node.a-level.com.ua/'+ url.url,
+	url: `http://localhost:8080/${url.url}`,
 	headers: localStorage.authToken ? {
-		'Content-Type': `application/json`,
-		Authorization: `Bearer ${localStorage.authToken}`,
-	} : {'Content-Type': `application/json`},
+		'Content-Type': 'application/json',
+		Authorization: `Bearer ${localStorage.authToken}`
+	} : {'Content-Type': 'application/json'},
 	data: JSON.stringify(data)
 })
 
@@ -66,4 +66,6 @@ const addUser = {
 	method: 'post'
 }
 
-export { myAxios, allOrders, orderOne, getDrivers, sendMail, changeStackStatus, stackStatus, driverOne, profile, placeBid, getStakes, addUser }
+export {
+	myAxios, allOrders, orderOne, getDrivers, sendMail, changeStackStatus, stackStatus, driverOne, profile, placeBid, getStakes, addUser
+}
