@@ -24,7 +24,7 @@ function actionPromiseLogin(login, password) {
 	const name = 'LOGIN'
 	const promise = axios({
 		method: 'post',
-		url: 'http://localhost:8080/api/user/authorization',
+		url: 'http://18.219.225.191:8080/api/user/authorization',
 		headers: {
 			'Content-Type': 'application/json'
 		},
