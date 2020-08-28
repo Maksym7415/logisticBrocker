@@ -24,10 +24,9 @@ function actionPromiseLogin(login, password) {
 	const name = 'LOGIN'
 	const promise = axios({
 		method: 'post',
-		url: 'http://ec2-18-219-225-191.us-east-2.compute.amazonaws.com:8080/api/user/authorization',
+		url: 'https://ec2-18-219-225-191.us-east-2.compute.amazonaws.com:8080/api/user/authorization',
 		headers: {
-			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': 'http://ec2-18-219-225-191.us-east-2.compute.amazonaws.com:8080'
+			'Content-Type': 'application/json'
 		},
 		data: JSON.stringify({login, password})
 	})
