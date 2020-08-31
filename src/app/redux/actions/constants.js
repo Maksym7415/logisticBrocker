@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const myAxios = (url, data) => () => axios({
 	method: url.method,
-	url: `http://ec2-3-128-180-225.us-east-2.compute.amazonaws.com:8080/${url.url}`,
+	url: `http://ec2-18-222-172-136.us-east-2.compute.amazonaws.com:8080/${url.url}`,
 	headers: localStorage.authToken ? {
 		'Content-Type': 'application/json',
 		Authorization: `Bearer ${localStorage.authToken}`
