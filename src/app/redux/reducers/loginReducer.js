@@ -24,7 +24,7 @@ function actionPromiseLogin(login, password) {
 	const name = 'LOGIN'
 	const promise = axios({
 		method: 'post',
-		url: 'http://ec2-18-222-172-136.us-east-2.compute.amazonaws.com:8080/api/user/authorization',
+		url: 'https://https://logisticbrocker.hopto.org/api/user/authorization',
 		headers: {
 			'Content-Type': 'application/json'
 		},
