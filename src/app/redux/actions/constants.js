@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const myAxios = (url, data) => () => axios({
 	method: url.method,
-	url: `https://logisticbrocker.hopto.org/one/${url.url}`,
+	url: `https://logisticbrocker.hopto.org/${url.url}`,
 	headers: localStorage.authToken ? {
 		'Content-Type': 'application/json',
 		Authorization: `Bearer ${localStorage.authToken}`
